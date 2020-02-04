@@ -52,7 +52,6 @@ public class Login_01_Register {
 		driver.findElement(By.cssSelector("#register-button")).click();
 
 		// Verify mandantory fields
-
 		Assert.assertTrue(driver.findElement(By.xpath("//span[text() ='First name is required.']")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.xpath("//span[text() ='Last name is required.']")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.xpath("//span[text() ='Email is required.']")).isDisplayed());
