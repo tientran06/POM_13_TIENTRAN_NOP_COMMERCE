@@ -6,10 +6,10 @@ import org.testng.annotations.BeforeTest;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
 public class Login_02_Login {
@@ -19,6 +19,7 @@ public class Login_02_Login {
 
 	@BeforeTest
 	public void beforeTest() {
+		System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
