@@ -17,7 +17,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 
-public class Login_01_Register {
+public class Login_01_Register_01_StepByStep {
 	WebDriver driver;
 	WebDriverWait waitExplicit;
 	Select select;
