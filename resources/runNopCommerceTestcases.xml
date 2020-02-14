@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Nop Commerce" parallel="false">
-  <test name="Test">
-    <classes>
-<!--       <class name="com.nopcommerce.login.Login_01_Register_01_StepByStep"/> -->
-<!-- 		<class name="com.nopcommerce.login.Login_02_RegisterAndlogin_AbstractPage_Declare"/> -->
-		<class name="com.nopcommerce.login.Login_02_RegisterAndlogin_AbstractPage_Extends"/>
-    </classes>
-  </test> 
+	<test name="Test">
+		<classes>
+			<!-- <class name="com.nopcommerce.login.Login_01_Register_01_StepByStep"/> -->
+			<!-- <class name="com.nopcommerce.login.Login_02_RegisterAndlogin_AbstractPage_Declare"/> -->
+			<!-- <class name="com.nopcommerce.login.Login_02_RegisterAndlogin_AbstractPage_Extends"/> -->
+			<class name="com.nopcommerce.login.Login_03_RegisterAndlogin_PageObject" />
+		</classes>
+	</test>
 </suite> 
