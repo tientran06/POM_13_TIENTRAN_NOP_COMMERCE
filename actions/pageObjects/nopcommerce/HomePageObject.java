@@ -1,9 +1,9 @@
-package pageObjects;
+package pageObjects.nopcommerce;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPages;
-import pageUIs.HomePageUI;
+import pageUIs.nopcommerce.HomePageUI;
 
 public class HomePageObject extends AbstractPages{
 	private WebDriver driver;

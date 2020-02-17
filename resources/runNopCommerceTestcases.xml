@@ -5,7 +5,8 @@
 			<!-- <class name="com.nopcommerce.login.Login_01_Register_01_StepByStep"/> -->
 			<!-- <class name="com.nopcommerce.login.Login_02_RegisterAndlogin_AbstractPage_Declare"/> -->
 			<!-- <class name="com.nopcommerce.login.Login_02_RegisterAndlogin_AbstractPage_Extends"/> -->
-			<class name="com.nopcommerce.login.Login_03_RegisterAndlogin_PageObject" />
-		</classes>
+			<!-- <class name="com.nopcommerce.login.Login_03_RegisterAndLogin_PageObject"/> -->
+			<!-- <class name="com.nopcommerce.login.Login_04_Login_PageObject" /> -->
+			<class name="com.nopcommerce.login.Login_04_Register_PageObject" /> </classes>
 	</test>
 </suite> 

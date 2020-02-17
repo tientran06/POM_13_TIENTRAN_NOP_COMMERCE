@@ -1,9 +1,9 @@
-package pageObjects;
+package pageObjects.nopcommerce;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPages;
-import pageUIs.LoginPageUI;
+import pageUIs.nopcommerce.LoginPageUI;
 
 public class LoginPageObject extends AbstractPages{
 	private WebDriver driver;
@@ -28,6 +28,16 @@ public class LoginPageObject extends AbstractPages{
 		waitForElementVisible(driver, LoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
 		return new HomePageObject(driver);
+	}
+
+	public boolean isEmptyEmailErrorMsgDisplayed(String errorMessage) {
+		waitForElementVisible(driver, String.format(LoginPageUI.EMAIL_ERROR_MSG, errorMessage));
+		return isDisplayed(driver, String.format(LoginPageUI.EMAIL_ERROR_MSG, errorMessage));
+	}
+
+	public boolean isValidationErrorMsgDisplayed(String errorMessage) {
+		waitForElementVisible(driver, String.format(LoginPageUI.VALIDATION_ERROR_MSG, errorMessage));
+		return isDisplayed(driver, String.format(LoginPageUI.VALIDATION_ERROR_MSG, errorMessage));
 	}
 
 	

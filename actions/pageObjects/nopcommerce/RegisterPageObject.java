@@ -1,9 +1,9 @@
-package pageObjects;
+package pageObjects.nopcommerce;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPages;
-import pageUIs.RegisterPageUI;
+import pageUIs.nopcommerce.RegisterPageUI;
 
 public class RegisterPageObject extends AbstractPages{
 	private WebDriver driver;
@@ -78,15 +78,41 @@ public class RegisterPageObject extends AbstractPages{
 		
 	}
 
-	public String getRegisterSuccessMessage() {
-		waitForElementVisible(driver, RegisterPageUI.REGISTER_SUCCESS_TEXT);
-		return getTextElement(driver, RegisterPageUI.REGISTER_SUCCESS_TEXT);
-	}
 
 	public HomePageObject clickToLogoutLink() {
 		waitForElementClickable(driver, RegisterPageUI.LOGOUT_LINK);
 		clickToElement(driver, RegisterPageUI.LOGOUT_LINK);
 		return new HomePageObject(driver);
+	}
+
+	public boolean isValidationErrorMsgDisplayed(String errorMessage) {
+		waitForElementVisible(driver, String.format(RegisterPageUI.REGISTER_VALIDATION_ERROR_MSG, errorMessage));
+		return isDisplayed(driver, String.format(RegisterPageUI.REGISTER_VALIDATION_ERROR_MSG, errorMessage));
+	}
+
+	public boolean isValidationPasswordErrorMsgDisplayed(String errorMessage) {
+		waitForElementVisible(driver, String.format(RegisterPageUI.VALIDATION_PASSWORD_ERROR_MSG, errorMessage));
+		return isDisplayed(driver, String.format(RegisterPageUI.VALIDATION_PASSWORD_ERROR_MSG, errorMessage));
+	}
+
+	public boolean isValidationConfirmPasswordErrorMsgDisplayed(String errorMessage) {
+		waitForElementVisible(driver, String.format(RegisterPageUI.VALIDATION_CONFIRM_PASSWORD_ERROR_MSG, errorMessage));
+		return isDisplayed(driver, String.format(RegisterPageUI.VALIDATION_CONFIRM_PASSWORD_ERROR_MSG, errorMessage));
+	}
+
+	public boolean isEmailErrorMsgDisplayed(String errorMessage) {
+		waitForElementVisible(driver, String.format(RegisterPageUI.EMAIL_ERROR_MSG, errorMessage));
+		return isDisplayed(driver, String.format(RegisterPageUI.EMAIL_ERROR_MSG, errorMessage));
+	}
+
+	public boolean isResultMsgDisplayed(String errorMessage) {
+		waitForElementVisible(driver, String.format(RegisterPageUI.REGISTER_ERROR_MSG, errorMessage));
+		return isDisplayed(driver, String.format(RegisterPageUI.REGISTER_ERROR_MSG, errorMessage));
+	}
+
+	public boolean isRegisterSuccessMsgDisplayed(String expectedMessage) {
+		waitForElementVisible(driver, String.format(RegisterPageUI.REGISTER_SUCCESS_MSG, expectedMessage));
+		return isDisplayed(driver, String.format(RegisterPageUI.REGISTER_SUCCESS_MSG, expectedMessage));
 	}
 
 }
