@@ -3,6 +3,7 @@ package pageObjects.nopcommerce;
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPages;
+import commons.PageGeneratorManager;
 import pageUIs.nopcommerce.RegisterPageUI;
 
 public class RegisterPageObject extends AbstractPages{
@@ -82,7 +83,7 @@ public class RegisterPageObject extends AbstractPages{
 	public HomePageObject clickToLogoutLink() {
 		waitForElementClickable(driver, RegisterPageUI.LOGOUT_LINK);
 		clickToElement(driver, RegisterPageUI.LOGOUT_LINK);
-		return new HomePageObject(driver);
+		return PageGeneratorManager.getHomePage(driver);
 	}
 
 	public boolean isValidationErrorMsgDisplayed(String errorMessage) {
@@ -114,5 +115,6 @@ public class RegisterPageObject extends AbstractPages{
 		waitForElementVisible(driver, String.format(RegisterPageUI.REGISTER_SUCCESS_MSG, expectedMessage));
 		return isDisplayed(driver, String.format(RegisterPageUI.REGISTER_SUCCESS_MSG, expectedMessage));
 	}
+
 
 }

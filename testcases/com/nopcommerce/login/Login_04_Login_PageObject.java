@@ -38,7 +38,6 @@ public class Login_04_Login_PageObject {
 	}
 
 	@Test
-
 	public void TC_01_LoginWithEmptyValue() {
 		loginPage.inputToEmailTextbox("");
 		loginPage.inputToPasswordTextbox("");

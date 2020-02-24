@@ -3,6 +3,7 @@ package pageObjects.nopcommerce;
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPages;
+import commons.PageGeneratorManager;
 import pageUIs.nopcommerce.LoginPageUI;
 
 public class LoginPageObject extends AbstractPages{
@@ -27,7 +28,7 @@ public class LoginPageObject extends AbstractPages{
 	public HomePageObject clickToLoginButton() {
 		waitForElementVisible(driver, LoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
-		return new HomePageObject(driver);
+		return PageGeneratorManager.getHomePage(driver);
 	}
 
 	public boolean isEmptyEmailErrorMsgDisplayed(String errorMessage) {
