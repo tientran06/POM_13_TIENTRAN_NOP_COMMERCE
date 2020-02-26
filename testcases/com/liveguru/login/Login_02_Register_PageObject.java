@@ -15,7 +15,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
-public class Login_01_Register_PageObject {
+public class Login_02_Register_PageObject {
 	WebDriver driver;
 	private String firstName, lastName, email, password, confirmPassword;
 	private RegisterPageObject registerPage;

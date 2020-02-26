@@ -17,19 +17,22 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
-public class Login_06_RegisterAndLogin_PageGeneratorManager extends AbstractTest{
+public class Login_07_RegisterAndLogin_Multi_Browser_Parallel extends AbstractTest{
 
 	private WebDriver driver;
 	private String firstName, lastName, email, companyName, password, confirmPassword;
 	private HomePageObject homePage;
 	private LoginPageObject loginPage;
 	private RegisterPageObject registerPage;
-	
+
 	@Parameters("browser")
 	@BeforeTest
 	public void beforeTest(String browserName) {
 		driver = getBrowserDriver(browserName);
 		
+		// >> Home page
+		homePage = PageGeneratorManager.getHomePage(driver);
+
 		// Data input
 		firstName = "Automation";
 		lastName = "Testing";
@@ -37,8 +40,6 @@ public class Login_06_RegisterAndLogin_PageGeneratorManager extends AbstractTest
 		companyName = "Automation FC Ltd";
 		password = "123456";
 		confirmPassword = "123456";
-		// >> Home page
-		homePage = PageGeneratorManager.getHomePage(driver);
 	}
 
 	@Test

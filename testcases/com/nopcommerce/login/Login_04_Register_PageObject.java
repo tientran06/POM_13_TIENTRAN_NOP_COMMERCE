@@ -2,29 +2,34 @@ package com.nopcommerce.login;
 
 import org.testng.annotations.Test;
 
+import commons.AbstractTest;
+import pageObjects.nopcommerce.HomePageObject;
 import pageObjects.nopcommerce.RegisterPageObject;
 
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 
-public class Login_04_Register_PageObject {
+public class Login_04_Register_PageObject extends AbstractTest{
 
 	private WebDriver driver;
 	private String firstName, lastName, email, companyName, password, confirmPassword;
 	private RegisterPageObject registerPage;
+	private HomePageObject homePage;
 
+	@Parameters("browser")
 	@BeforeTest
-	public void beforeTest() {
-		System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().window().maximize();
+	public void beforeTest(String browserName) {
+		driver = getBrowserDriver(browserName);
+		// >> Home page
+		homePage = new HomePageObject(driver);
+		
 		// Data input
 		firstName = "Automation";
 		lastName = "Testing";
@@ -36,8 +41,8 @@ public class Login_04_Register_PageObject {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
-		registerPage = new RegisterPageObject(driver);
+		// Click to Register >> Register page
+		registerPage = homePage.clickToRegisterLink();
 	}
 
 	@Test
