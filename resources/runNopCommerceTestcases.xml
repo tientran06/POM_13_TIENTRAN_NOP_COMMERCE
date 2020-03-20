@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Nop Commerce" parallel="false">
-	<test name="Test">
+<suite name="Nop Commerce" parallel="tests" thread-count="3">
+
+	<test name="Run on CHROME">
+		<parameter name="browser" value="chrome" />
 		<classes>
-			<!-- <class name="com.nopcommerce.login.Login_01_Register_01_StepByStep"/> -->
-			<!-- <class name="com.nopcommerce.login.Login_02_RegisterAndlogin_AbstractPage_Declare"/> -->
-			<!-- <class name="com.nopcommerce.login.Login_02_RegisterAndlogin_AbstractPage_Extends"/> -->
-			<class name="com.nopcommerce.login.Login_03_RegisterAndlogin_PageObject" />
+<!-- 			<class name="com.nopcommerce.frontend.FrontEnd_03_MyAccount" /> -->
+<!-- 			<class name="com.nopcommerce.login.Login_09_RegisterAndLogin_ActionChain" /> -->
+
 		</classes>
 	</test>
+
+	<test name="Run on FIREFOX">
+		<parameter name="browser" value="firefox" />
+		<classes>
+<!-- 			<class name="com.nopcommerce.frontend.FrontEnd_03_MyAccount" /> -->
+			<class name="com.nopcommerce.login.Login_10_RegisterAndLogin_DynamicLocator" />
+		</classes>
+	</test>
+
+	<!-- <test name="Run on CHROME HEADLESS"> -->
+	<!-- <parameter name="browser" value="headless_chrome" /> -->
+	<!-- <classes> -->
+	<!-- <class name="com.nopcommerce.login.Login_07_RegisterAndLogin_Multi_Browser_Parallel" /> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+
+	<!-- <test name="Run on FIREFOX HEADLESS"> -->
+	<!-- <parameter name="browser" value="headless_firefox" /> -->
+	<!-- <classes> -->
+	<!-- <class name="com.nopcommerce.login.Login_07_RegisterAndLogin_Multi_Browser_Parallel" /> -->
+	<!-- </classes> -->
+	<!-- </test> -->
 </suite> 
