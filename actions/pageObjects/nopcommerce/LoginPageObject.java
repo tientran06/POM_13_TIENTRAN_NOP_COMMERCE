@@ -31,7 +31,7 @@ public class LoginPageObject extends AbstractPages{
 		return PageGeneratorManager.getHomePage(driver);
 	}
 
-	public boolean isEmptyEmailErrorMsgDisplayed(String errorMessage) {
+	public boolean isEmailErrorMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(LoginPageUI.EMAIL_ERROR_MSG, errorMessage));
 		return isDisplayed(driver, String.format(LoginPageUI.EMAIL_ERROR_MSG, errorMessage));
 	}
@@ -40,8 +40,6 @@ public class LoginPageObject extends AbstractPages{
 		waitForElementVisible(driver, String.format(LoginPageUI.VALIDATION_ERROR_MSG, errorMessage));
 		return isDisplayed(driver, String.format(LoginPageUI.VALIDATION_ERROR_MSG, errorMessage));
 	}
-
-	
 
 	
 }

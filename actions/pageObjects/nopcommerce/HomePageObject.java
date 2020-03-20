@@ -30,4 +30,11 @@ public class HomePageObject extends AbstractPages{
 		return isDisplayed(driver, HomePageUI.MYACCOUNT_LINK);
 	}
 
+	public void clickToLogoutLink() {
+		waitForElementClickable(driver, HomePageUI.LOGOUT_LINK);
+		clickToElement(driver, HomePageUI.LOGOUT_LINK);
+		
+	}
+
+	
 }

@@ -1,40 +1,40 @@
-package com.nopcommerce.login;
+package com.nopcommerce.frontend;
 
 import org.testng.annotations.Test;
 
+import commons.AbstractTest;
+import commons.PageGeneratorManager;
 import pageObjects.nopcommerce.HomePageObject;
 import pageObjects.nopcommerce.LoginPageObject;
-
 import org.testng.annotations.BeforeTest;
-
-import java.util.Random;
-
+import org.testng.annotations.Parameters;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 
-public class Login_04_Login_PageObject {
+public class FrontEnd_02_Login extends AbstractTest {
 
 	private WebDriver driver;
-	private String email, password;
 	private HomePageObject homePage;
 	private LoginPageObject loginPage;
+	private String email, password;
 
+	@Parameters("browser")
 	@BeforeTest
-	public void beforeTest() {
-		System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
-		driver = new FirefoxDriver();
+	public void beforeTest(String browserName) {
+		driver = getBrowserDriver(browserName);
+		homePage = PageGeneratorManager.getHomePage(driver);
+		loginPage = homePage.clickToLoginLink();
 
-		email = "tran123@gmail.com";
+		// Data input
+		email = "automation_FC@gmail.com";
 		password = "123456";
 	}
 
 	@BeforeMethod
 	public void beforeMethod() {
-		driver.get("https://demo.nopcommerce.com/login?returnUrl=%2F");
-		loginPage = new LoginPageObject(driver);
+		//loginPage = homePage.clickToLoginLink();
 	}
 
 	@Test
@@ -46,11 +46,12 @@ public class Login_04_Login_PageObject {
 
 	}
 
-	// @Test
+	@Test
 	public void TC_02_LoginWithInvalidEmail() {
-		loginPage.inputToEmailTextbox("");
-		loginPage.inputToPasswordTextbox("");
+		loginPage.inputToEmailTextbox("abcdkđfd@hotmailcom");
+		loginPage.inputToPasswordTextbox("123654");
 		loginPage.clickToLoginButton();
+		Assert.assertTrue(loginPage.isEmailErrorMsgDisplayed("Wrong email"));
 	}
 
 	@Test
@@ -58,8 +59,7 @@ public class Login_04_Login_PageObject {
 		loginPage.inputToEmailTextbox("automation_FC123@gmail.com");
 		loginPage.inputToPasswordTextbox(password);
 		loginPage.clickToLoginButton();
-		Assert.assertTrue(loginPage
-				.isValidationErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
+		Assert.assertTrue(loginPage.isValidationErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
 		Assert.assertTrue(loginPage.isValidationErrorMsgDisplayed("No customer account found"));
 
 	}
@@ -69,8 +69,7 @@ public class Login_04_Login_PageObject {
 		loginPage.inputToEmailTextbox(email);
 		loginPage.inputToPasswordTextbox("");
 		loginPage.clickToLoginButton();
-		Assert.assertTrue(loginPage
-				.isValidationErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
+		Assert.assertTrue(loginPage.isValidationErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
 		Assert.assertTrue(loginPage.isValidationErrorMsgDisplayed("The credentials provided are incorrect"));
 	}
 
@@ -79,8 +78,7 @@ public class Login_04_Login_PageObject {
 		loginPage.inputToEmailTextbox(email);
 		loginPage.inputToPasswordTextbox("123789@");
 		loginPage.clickToLoginButton();
-		Assert.assertTrue(loginPage
-				.isValidationErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
+		Assert.assertTrue(loginPage.isValidationErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
 		Assert.assertTrue(loginPage.isValidationErrorMsgDisplayed("The credentials provided are incorrect"));
 	}
 
@@ -88,17 +86,9 @@ public class Login_04_Login_PageObject {
 	public void TC_06_LoginWithCorrectEmailAndPassword() {
 		loginPage.inputToEmailTextbox(email);
 		loginPage.inputToPasswordTextbox(password);
-		loginPage.clickToLoginButton();
 
-		// >> Home Page
-		homePage = new HomePageObject(driver);
+		homePage = loginPage.clickToLoginButton();
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
-	}
-
-	public int randomNumber() {
-		Random ran = new Random();
-		return ran.nextInt(5000);
-
 	}
 
 	@AfterTest

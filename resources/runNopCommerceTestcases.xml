@@ -4,9 +4,8 @@
 	<test name="Run on CHROME">
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="com.nopcommerce.login.Login_04_Register_PageObject" />
-			<!-- <class name="com.nopcommerce.login.Login_06_RegisterAndLogin_PageGeneratorManager" /> -->
-			<!-- <class name="com.nopcommerce.login.Login_07_RegisterAndLogin_Multi_Browser_Parallel" /> -->
+<!-- 			<class name="com.nopcommerce.frontend.FrontEnd_03_MyAccount" /> -->
+<!-- 			<class name="com.nopcommerce.login.Login_09_RegisterAndLogin_ActionChain" /> -->
 
 		</classes>
 	</test>
@@ -14,8 +13,8 @@
 	<test name="Run on FIREFOX">
 		<parameter name="browser" value="firefox" />
 		<classes>
-			<class name="com.nopcommerce.login.Login_06_RegisterAndLogin_PageGeneratorManager" />
-			<!-- <class name="com.nopcommerce.login.Login_07_RegisterAndLogin_Multi_Browser_Parallel" /> -->
+<!-- 			<class name="com.nopcommerce.frontend.FrontEnd_03_MyAccount" /> -->
+			<class name="com.nopcommerce.login.Login_10_RegisterAndLogin_DynamicLocator" />
 		</classes>
 	</test>
 
@@ -26,10 +25,10 @@
 	<!-- </classes> -->
 	<!-- </test> -->
 
-	<test name="Run on FIREFOX HEADLESS">
-		<parameter name="browser" value="headless_firefox" />
-		<classes>
-			<class name="com.nopcommerce.login.Login_07_RegisterAndLogin_Multi_Browser_Parallel" />
-		</classes>
-	</test>
+	<!-- <test name="Run on FIREFOX HEADLESS"> -->
+	<!-- <parameter name="browser" value="headless_firefox" /> -->
+	<!-- <classes> -->
+	<!-- <class name="com.nopcommerce.login.Login_07_RegisterAndLogin_Multi_Browser_Parallel" /> -->
+	<!-- </classes> -->
+	<!-- </test> -->
 </suite> 

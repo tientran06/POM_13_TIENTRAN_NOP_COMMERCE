@@ -33,7 +33,7 @@ public class AbstractTest {
 		}
 		
 		driver.get(GlobalConstants.DEV_URL);
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		return driver;
 	}
