@@ -4,6 +4,7 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -33,12 +34,11 @@ public class AbstractPages {
 	private WebElement element;
 	private Select select;
 	private By byXpath;
-	private long longTimeout = 30;
 	private JavascriptExecutor jsExecutor;
 
 	public void openUrl(WebDriver driver, String urlvalue) {
 		driver.get(urlvalue);
-		driver.manage().timeouts().implicitlyWait(longTimeout, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
 
@@ -120,15 +120,12 @@ public class AbstractPages {
 	}
 
 	public void sendkeyToElement(WebDriver driver, String locator, String value) {
-		findElementByXpath(driver, locator).clear();
 		findElementByXpath(driver, locator).sendKeys(value);
-
 	}
 
 	public void sendkeyToElement(WebDriver driver, String locator, String inputValue, String... values) {
 		findElementByXpath(driver, locator, values).clear();
 		findElementByXpath(driver, locator, values).sendKeys(inputValue);
-
 	}
 
 	public String getAttributeValue(WebDriver driver, String locator, String attributeValue) {
@@ -138,6 +135,9 @@ public class AbstractPages {
 
 	public String getTextElement(WebDriver driver, String locator) {
 		return findElementByXpath(driver, locator).getText();
+	}
+	public String getTextElement(WebDriver driver, String locator, String... values) {
+		return findElementByXpath(driver, locator, values).getText();
 	}
 
 	public int countElementNumber(WebDriver driver, String locator) {
@@ -158,25 +158,70 @@ public class AbstractPages {
 		}
 	}
 
-	public boolean isDisplayed(WebDriver driver, String locator) {
-		element = findElementByXpath(driver, locator);
-		if (element.isDisplayed()) {
-			return true;
-		} else {
+	public boolean isElementDisplayed(WebDriver driver, String locator) {
+		overrideGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+		try {
+			element = findElementByXpath(driver, locator);
+			overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			return element.isDisplayed();
+
+		} catch (Exception ex) {
+			overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			ex.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
+		overrideGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+		try {
+			element = findElementByXpath(driver, locator, values);
+			overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			return element.isDisplayed();
+
+		} catch (Exception ex) {
+			overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			ex.printStackTrace();
 			return false;
 		}
 	}
 
-	public boolean isDisplayed(WebDriver driver, String locator, String... values) {
-		element = findElementByXpath(driver, locator, values);
-		if (element.isDisplayed()) {
+	public boolean isElementUnDisplayed(WebDriver driver, String locator) {
+		overrideGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+		List<WebElement> elements = findElementsByXpath(driver, locator);
+		if (elements.size() == 0) {
+			overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			System.out.println("Element is not in DOM");
+			return true;
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			System.out.println("Element is in DOM but not Displayed");
 			return true;
 		} else {
+			overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			System.out.println("Elemenet is Displayed");
 			return false;
 		}
 	}
-
-	public boolean isSelected(WebDriver driver, String locator) {
+	public boolean isElementUnDisplayed(WebDriver driver, String locator, String... values) {
+		overrideGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+		List<WebElement> elements = findElementsByXpath(driver, locator, values);
+		if (elements.size() == 0) {
+			overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			System.out.println("Element is not in DOM");
+			return true;
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			System.out.println("Element is in DOM but not Displayed");
+			return true;
+		} else {
+			overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+			System.out.println("Elemenet is Displayed");
+			return false;
+		}
+	}
+	public boolean isElementSelected(WebDriver driver, String locator) {
+		
 		element = findElementByXpath(driver, locator);
 		if (element.isSelected()) {
 			return true;
@@ -185,7 +230,7 @@ public class AbstractPages {
 		}
 	}
 
-	public boolean isEnabled(WebDriver driver, String locator) {
+	public boolean isElementEnabled(WebDriver driver, String locator) {
 		element = findElementByXpath(driver, locator);
 		if (element.isEnabled()) {
 			return true;
@@ -276,55 +321,87 @@ public class AbstractPages {
 	}
 
 	public void waitForElementPresence(WebDriver driver, String locator) {
-		waitExplicit = new WebDriverWait(driver, longTimeout);
+		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		byXpath = byXpathLocator(locator);
 		waitExplicit.until(ExpectedConditions.presenceOfElementLocated(byXpath));
 	}
 
 	public void waitForElementPresence(WebDriver driver, String locator, String... values) {
-		waitExplicit = new WebDriverWait(driver, longTimeout);
+		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		byXpath = byXpathLocator(locator, values);
 		waitExplicit.until(ExpectedConditions.presenceOfElementLocated(byXpath));
 	}
 
 	public void waitForElementVisible(WebDriver driver, String locator) {
-		waitExplicit = new WebDriverWait(driver, longTimeout);
+		
+		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		overrideGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		byXpath = byXpathLocator(locator);
-		waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
+		try {
+			waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 	}
 
 	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
-		waitExplicit = new WebDriverWait(driver, longTimeout);
+		
+		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		overrideGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		byXpath = byXpathLocator(locator, values);
-		waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
+		try {
+			waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 	}
 
 	public void waitForElementClickable(WebDriver driver, String locator) {
-		waitExplicit = new WebDriverWait(driver, longTimeout);
+		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		byXpath = byXpathLocator(locator);
 		waitExplicit.until(ExpectedConditions.elementToBeClickable(byXpath));
 	}
 
 	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
-		waitExplicit = new WebDriverWait(driver, longTimeout);
+		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		byXpath = byXpathLocator(locator, values);
 		waitExplicit.until(ExpectedConditions.elementToBeClickable(byXpath));
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String locator) {
-		waitExplicit = new WebDriverWait(driver, longTimeout);
 		byXpath = byXpathLocator(locator);
-		waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byXpath));
+		//Date date = new Date();
+		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
+		overrideGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+		try {
+			System.out.println("Start time for wait invisible= " + new Date());
+			waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byXpath));
+			System.out.println("End time for wait invisible= " + new Date());
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String locator, String... values) {
-		waitExplicit = new WebDriverWait(driver, longTimeout);
+		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		byXpath = byXpathLocator(locator, values);
-		waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byXpath));
+		//Date date = new Date();
+		overrideGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+		try {
+			System.out.println("Start time for wait invisible= " + new Date());
+			waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byXpath));
+			System.out.println("End time for wait invisible= " + new Date());
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 	}
 
 	public void waitForAlertPresence(WebDriver driver) {
-		waitExplicit = new WebDriverWait(driver, longTimeout);
+		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		waitExplicit.until(ExpectedConditions.alertIsPresent());
 	}
 
@@ -436,10 +513,38 @@ public class AbstractPages {
 		}
 	}
 
-	public void upload1File(WebDriver driver, String uploadFile, String picturePath, String buttonStart) {
-		sendkeyToElement(driver, uploadFile, picturePath);
+	public void upload1File(WebDriver driver, String uploadFile, String fileName, String buttonStart) {
+		String file = GlobalConstants.UPLOAD_FILE_PATH + fileName;
+		
+		waitForElementPresence(driver, uploadFile);
+		sendkeyToElement(driver, uploadFile, file);
+		sleepInSecond(2);
+
 		waitForElementVisible(driver, buttonStart);
 		clickToElement(driver, buttonStart);
+		sleepInSecond(2);
+	}
+
+	public void uploadMultipleFiles(WebDriver driver, String uploadFile, String buttonStart, String... fileNames) {
+		String filePath = GlobalConstants.UPLOAD_FILE_PATH;
+		String fullFileName = "";
+
+		for (String file : fileNames) {
+			fullFileName = fullFileName + filePath + file + "\n";
+		}
+		fullFileName = fullFileName.trim();
+		
+		waitForElementPresence(driver, uploadFile);
+		sendkeyToElement(driver, uploadFile, fullFileName);
+		sleepInSecond(2);
+		
+		waitForElementClickable(driver, buttonStart);
+		List<WebElement> buttonStarts = findElementsByXpath(driver, buttonStart);
+		for (WebElement button : buttonStarts) {
+			button.click();
+			sleepInSecond(2);
+		}
+		sleepInSecond(2);
 	}
 
 	public void uploadFileByRobot(WebDriver driver, String uploadFile, String picturePath, String buttonStart) throws Exception {
@@ -499,12 +604,17 @@ public class AbstractPages {
 		}
 	}
 
+	public void overrideGlobalTimeout(WebDriver driver, long timeOut) {
+		driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
+
+	}
 	// functions to open page objects
 	public HomePageObject openHomePage(WebDriver driver) {
 		waitForElementClickable(driver, AbstractPageUI.HEADER_LOGO_IMG);
 		clickToElement(driver, AbstractPageUI.HEADER_LOGO_IMG);
 		return PageGeneratorManager.getHomePage(driver);
 	}
+
 	public ShippingReturnPageObject openShippingReturnPage(WebDriver driver) {
 		waitForElementClickable(driver, AbstractPageUI.FOOTER_SHIPPING_AND_RETURNS_LINK);
 		clickToElement(driver, AbstractPageUI.FOOTER_SHIPPING_AND_RETURNS_LINK);
@@ -546,7 +656,7 @@ public class AbstractPages {
 	public AbstractPages openFooterPageByName(WebDriver driver, String pageName) {
 		waitForElementClickable(driver, AbstractPageUI.DYMANIC_FOOTER_LINK, pageName);
 		clickToElement(driver, AbstractPageUI.DYMANIC_FOOTER_LINK, pageName);
-		//Factory pattern
+		// Factory pattern
 		switch (pageName) {
 		case "My account":
 			return PageGeneratorManager.getFooterMyAccountPage(driver);
@@ -564,6 +674,7 @@ public class AbstractPages {
 		waitForElementClickable(driver, AbstractPageUI.DYMANIC_FOOTER_LINK, pageName);
 		clickToElement(driver, AbstractPageUI.DYMANIC_FOOTER_LINK, pageName);
 	}
+
 	public void openHeaderPagesByName(WebDriver driver, String pageName) {
 		waitForElementClickable(driver, AbstractPageUI.DYMANIC_HEADER_LINK, pageName);
 		clickToElement(driver, AbstractPageUI.DYMANIC_HEADER_LINK, pageName);

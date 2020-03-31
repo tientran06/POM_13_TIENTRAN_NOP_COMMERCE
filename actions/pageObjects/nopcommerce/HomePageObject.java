@@ -27,7 +27,7 @@ public class HomePageObject extends AbstractPages{
 
 	public boolean isMyAccountLinkDisplayed() {
 		waitForElementVisible(driver, HomePageUI.MYACCOUNT_LINK);
-		return isDisplayed(driver, HomePageUI.MYACCOUNT_LINK);
+		return isElementDisplayed(driver, HomePageUI.MYACCOUNT_LINK);
 	}
 
 	public void clickToLogoutLink() {

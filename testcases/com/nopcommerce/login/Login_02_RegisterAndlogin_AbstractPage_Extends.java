@@ -68,7 +68,7 @@ public class Login_02_RegisterAndlogin_AbstractPage_Extends extends AbstractPage
 		sendkeyToElement(driver, "//input[@id='Password']", password);
 
 		clickToElement(driver, "//div[@class='buttons']/input[@type='submit']");
-		Assert.assertTrue(isDisplayed(driver, "//a[@class='ico-account']"));
+		Assert.assertTrue(isElementDisplayed(driver, "//a[@class='ico-account']"));
 	}
 	public int randomNumber() {
 		Random ran = new Random();

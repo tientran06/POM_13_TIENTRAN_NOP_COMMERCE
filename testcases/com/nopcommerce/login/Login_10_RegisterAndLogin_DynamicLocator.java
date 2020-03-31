@@ -2,6 +2,8 @@ package com.nopcommerce.login;
 
 import org.testng.annotations.Test;
 
+import com.nopcommerce.common.Common_01_RegisterUser;
+
 import commons.AbstractTest;
 import commons.PageGeneratorManager;
 import pageObjects.nopcommerce.FooterMyAccountPageObject;
@@ -12,7 +14,6 @@ import pageObjects.nopcommerce.HeaderGiftCardsPageObject;
 import pageObjects.nopcommerce.HeaderWishlistPageObject;
 import pageObjects.nopcommerce.HomePageObject;
 import pageObjects.nopcommerce.LoginPageObject;
-import pageObjects.nopcommerce.RegisterPageObject;
 import pageObjects.nopcommerce.SearchPageObject;
 import pageObjects.nopcommerce.ShippingReturnPageObject;
 import pageObjects.nopcommerce.SitemapPageObject;
@@ -23,16 +24,13 @@ import org.testng.annotations.Parameters;
 import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
 public class Login_10_RegisterAndLogin_DynamicLocator extends AbstractTest {
 
 	private WebDriver driver;
-	private String firstName, lastName, email, companyName, password, confirmPassword;
 	private HomePageObject homePage;
 	private LoginPageObject loginPage;
-	private RegisterPageObject registerPage;
 	private SearchPageObject searchPage;
 	private FooterMyAccountPageObject footerMyAccountPage;
 	private ShippingReturnPageObject shippingReturnPage;
@@ -42,8 +40,6 @@ public class Login_10_RegisterAndLogin_DynamicLocator extends AbstractTest {
 	private HeaderBooksPageObject booksPage;
 	private HeaderGiftCardsPageObject giftCardsPage;
 	private HeaderComputersPageObject computersPage;
-	
-	
 
 	@Parameters("browser")
 	@BeforeTest
@@ -53,52 +49,13 @@ public class Login_10_RegisterAndLogin_DynamicLocator extends AbstractTest {
 		// >> Home page
 		homePage = PageGeneratorManager.getHomePage(driver);
 
-		// Data input
-		firstName = "Automation";
-		lastName = "Testing";
-		email = "automationFC" + randomNumber() + "@gmail.com";
-		companyName = "Automation FC Ltd";
-		password = "123456";
-		confirmPassword = "123456";
-	}
-
-	@Test
-	public void TC_01_RegisterToSystem() throws InterruptedException {
-		// Click to Register >> Register page
-		registerPage = homePage.clickToRegisterLink();
-		// Register page >> input data
-		registerPage.clickToMale();
-		registerPage.inputToFirstName(firstName);
-		registerPage.inputToLastName(lastName);
-
-		registerPage.selectDayDropDown("2");
-		registerPage.selectMonthDropDown("June");
-		registerPage.selectYearDropDown("1922");
-
-		registerPage.inputToEmailTextbox(email);
-		registerPage.inputToCompanyTextbox(companyName);
-		registerPage.inputToPasswordTextbox(password);
-		registerPage.inputToConfirmPasswordTextbox(confirmPassword);
-
-		registerPage.clickToRegisterButton();
-		Assert.assertTrue(registerPage.isRegisterSuccessMsgDisplayed("Your registration completed"));
-		// Click Log out link >> HomePage
-		homePage = registerPage.clickToLogoutLink();
-
-	}
-
-	@Test
-	public void TC_02_LoginToSystem() {
-		// click to log in >> Login Page
 		loginPage = homePage.clickToLoginLink();
 
-		loginPage.inputToEmailTextbox(email);
-		loginPage.inputToPasswordTextbox(password);
+		loginPage.inputToEmailTextbox(Common_01_RegisterUser.email);
+		loginPage.inputToPasswordTextbox(Common_01_RegisterUser.password);
 
-		// Click to Login button >> Home Page
 		homePage = loginPage.clickToLoginButton();
-		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
-
+		verifyTrue(homePage.isMyAccountLinkDisplayed());
 	}
 
 	@Test(description = "only use in case less pages")
@@ -119,7 +76,7 @@ public class Login_10_RegisterAndLogin_DynamicLocator extends AbstractTest {
 		// 4. Sitemap > Footer My Account
 		footerMyAccountPage = (FooterMyAccountPageObject) sitemapPage.openFooterPageByName(driver, "My account");
 		footerMyAccountPage.sleepInSecond(2);
-		
+
 		// 5. Footer My Account > Home page
 		homePage = footerMyAccountPage.openHomePage(driver);
 		homePage.sleepInSecond(2);
@@ -175,12 +132,12 @@ public class Login_10_RegisterAndLogin_DynamicLocator extends AbstractTest {
 		apparelPage.openHeaderPagesByName(driver, "Gift Cards ");
 		giftCardsPage = PageGeneratorManager.getHeaderGiftCardsPage(driver);
 		giftCardsPage.sleepInSecond(2);
-		
+
 		// 4. GiftCards > BooksPage
 		giftCardsPage.openHeaderPagesByName(driver, "Books ");
 		booksPage = PageGeneratorManager.getHeaderBooksPage(driver);
 		booksPage.sleepInSecond(2);
-		
+
 		// 5. BooksPage > Homepage
 		booksPage.openHomePage(driver);
 		homePage = PageGeneratorManager.getHomePage(driver);
@@ -190,16 +147,14 @@ public class Login_10_RegisterAndLogin_DynamicLocator extends AbstractTest {
 		headerWishListPage = homePage.openHeaderWishlistPage(driver);
 		headerWishListPage.sleepInSecond(2);
 	}
-
-	public int randomNumber() {
-		Random ran = new Random();
-		return ran.nextInt(5000);
-
+	@Test()
+	public void TC_05_Close() {
+		verifyTrue(false);
 	}
-
-	@AfterTest
+	
+	@AfterTest(alwaysRun = true)
 	public void afterTest() {
-		driver.quit();
+		closeBrowserAndDriver(driver);
 	}
 
 }

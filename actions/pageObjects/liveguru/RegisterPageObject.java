@@ -41,48 +41,48 @@ public class RegisterPageObject extends AbstractPages{
 
 	public boolean isFirstNameRequiredErrorMsgDisplayed(String errorMsg) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.REQUIRED_FIRSTNAME_ERROR_MSG, errorMsg));
-		return isDisplayed(driver, String.format(RegisterPageUI.REQUIRED_FIRSTNAME_ERROR_MSG, errorMsg));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.REQUIRED_FIRSTNAME_ERROR_MSG, errorMsg));
 	}
 
 	public boolean isLastNameRequiredErrorMsgDisplayed(String errorMsg) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.REQUIRED_LASTNAME_ERROR_MSG, errorMsg));
-		return isDisplayed(driver, String.format(RegisterPageUI.REQUIRED_LASTNAME_ERROR_MSG, errorMsg));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.REQUIRED_LASTNAME_ERROR_MSG, errorMsg));
 	}
 
 	public boolean isEmailRequiredErrorMsgDisplayed(String errorMsg) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.REQUIRED_EMAILNAME_ERROR_MSG, errorMsg));
-		return isDisplayed(driver, String.format(RegisterPageUI.REQUIRED_EMAILNAME_ERROR_MSG, errorMsg));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.REQUIRED_EMAILNAME_ERROR_MSG, errorMsg));
 	}
 
 	public boolean isPasswordRequiredErrorMsgDisplayed(String errorMsg) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.REQUIRED_PASSWORD_ERROR_MSG, errorMsg));
-		return isDisplayed(driver, String.format(RegisterPageUI.REQUIRED_PASSWORD_ERROR_MSG, errorMsg));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.REQUIRED_PASSWORD_ERROR_MSG, errorMsg));
 	}
 
 	public boolean isConfirmRequiredErrorMsgDisplayed(String errorMsg) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.REQUIRED_CONFIRM_PASSWORD_ERROR_MSG, errorMsg));
-		return isDisplayed(driver, String.format(RegisterPageUI.REQUIRED_CONFIRM_PASSWORD_ERROR_MSG, errorMsg));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.REQUIRED_CONFIRM_PASSWORD_ERROR_MSG, errorMsg));
 	}
 
 	public boolean isEmailValidationErrorMsgDisplayed(String errorMsg) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.VALIDATION_EMAIL_ERROR_MSG, errorMsg));
-		return isDisplayed(driver, String.format(RegisterPageUI.VALIDATION_EMAIL_ERROR_MSG, errorMsg));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.VALIDATION_EMAIL_ERROR_MSG, errorMsg));
 		
 	}
 
 	public boolean isRegisterErrorMsgDisplayed(String errorMsg) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.REGISTER_ERROR_MSG, errorMsg));
-		return isDisplayed(driver, String.format(RegisterPageUI.REGISTER_ERROR_MSG, errorMsg));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.REGISTER_ERROR_MSG, errorMsg));
 	}
 
 	public boolean isPasswordValidationErrorMsgDisplayed(String errorMsg) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.VALIDATION_PASSWORD_ERROR_MSG, errorMsg));
-		return isDisplayed(driver, String.format(RegisterPageUI.VALIDATION_PASSWORD_ERROR_MSG, errorMsg));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.VALIDATION_PASSWORD_ERROR_MSG, errorMsg));
 	}
 
 	public boolean isConfirmPasswordValidationErrorMsgDisplayed(String errorMsg) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.VALIDATION_CONFIRM_PASSWORD_ERROR_MSG, errorMsg));
-		return isDisplayed(driver, String.format(RegisterPageUI.VALIDATION_CONFIRM_PASSWORD_ERROR_MSG, errorMsg));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.VALIDATION_CONFIRM_PASSWORD_ERROR_MSG, errorMsg));
 	}
 
 	public MyAccountPageObject clickToRegisterButton() {

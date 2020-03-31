@@ -31,27 +31,27 @@ public class LoginPageObject extends AbstractPages{
 
 	public boolean isRequiredEmailErrorMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(LoginPageUI.EMAIL_REQUIRED_ERROR_MSG, errorMessage));
-		return isDisplayed(driver, String.format(LoginPageUI.EMAIL_REQUIRED_ERROR_MSG, errorMessage));
+		return isElementDisplayed(driver, String.format(LoginPageUI.EMAIL_REQUIRED_ERROR_MSG, errorMessage));
 	}
 
 	public boolean isRequiredPasswordErrorMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(LoginPageUI.PASSWORD_REQUIRED_ERROR_MSG, errorMessage));
-		return isDisplayed(driver, String.format(LoginPageUI.PASSWORD_REQUIRED_ERROR_MSG, errorMessage));
+		return isElementDisplayed(driver, String.format(LoginPageUI.PASSWORD_REQUIRED_ERROR_MSG, errorMessage));
 	}
 
 	public boolean isValidationEmailErrorMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(LoginPageUI.EMAIL_VALIDATION_ERROR_MSG, errorMessage));
-		return isDisplayed(driver, String.format(LoginPageUI.EMAIL_VALIDATION_ERROR_MSG, errorMessage));
+		return isElementDisplayed(driver, String.format(LoginPageUI.EMAIL_VALIDATION_ERROR_MSG, errorMessage));
 	}
 
 	public boolean isErrorMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(LoginPageUI.LOGIN_ERROR_MSG, errorMessage));
-		return isDisplayed(driver, String.format(LoginPageUI.LOGIN_ERROR_MSG, errorMessage));
+		return isElementDisplayed(driver, String.format(LoginPageUI.LOGIN_ERROR_MSG, errorMessage));
 	}
 
 	public boolean isValidationPasswordErrorMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(LoginPageUI.PASSWORD_VALIDATION_ERROR_MSG, errorMessage));
-		return isDisplayed(driver, String.format(LoginPageUI.PASSWORD_VALIDATION_ERROR_MSG, errorMessage));
+		return isElementDisplayed(driver, String.format(LoginPageUI.PASSWORD_VALIDATION_ERROR_MSG, errorMessage));
 	}
 
 

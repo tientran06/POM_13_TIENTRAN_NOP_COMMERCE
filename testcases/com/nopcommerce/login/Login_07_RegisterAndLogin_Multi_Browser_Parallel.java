@@ -25,7 +25,7 @@ public class Login_07_RegisterAndLogin_Multi_Browser_Parallel extends AbstractTe
 	private LoginPageObject loginPage;
 	private RegisterPageObject registerPage;
 
-	@Parameters("browser")
+	@Parameters({"browser"})
 	@BeforeTest
 	public void beforeTest(String browserName) {
 		driver = getBrowserDriver(browserName);

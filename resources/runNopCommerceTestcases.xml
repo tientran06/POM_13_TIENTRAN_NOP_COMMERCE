@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Nop Commerce" parallel="tests" thread-count="3">
-
+	<listeners>
+			<listener class-name = "org.uncommons.reportng.HTMLReporter" />
+			<listener class-name = "org.uncommons.reportng.JUnitXMLReporter" />
+			<listener class-name = "commons.MethodListener" />
+	</listeners>
+	<parameter name="browser" value="firefox" />
 	<test name="Run on CHROME">
 		<parameter name="browser" value="chrome" />
 		<classes>
-<!-- 			<class name="com.nopcommerce.frontend.FrontEnd_03_MyAccount" /> -->
-<!-- 			<class name="com.nopcommerce.login.Login_09_RegisterAndLogin_ActionChain" /> -->
+<!-- 			<class name="com.nopcommerce.login.Login_12_RegisterAndLogin_Assert_Verify_Log_Report" /> -->
 
 		</classes>
 	</test>
@@ -14,6 +18,7 @@
 		<parameter name="browser" value="firefox" />
 		<classes>
 <!-- 			<class name="com.nopcommerce.frontend.FrontEnd_03_MyAccount" /> -->
+			<class name="com.nopcommerce.common.Common_01_RegisterUser" />
 			<class name="com.nopcommerce.login.Login_10_RegisterAndLogin_DynamicLocator" />
 		</classes>
 	</test>

@@ -88,32 +88,56 @@ public class RegisterPageObject extends AbstractPages{
 
 	public boolean isValidationErrorMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.REGISTER_VALIDATION_ERROR_MSG, errorMessage));
-		return isDisplayed(driver, String.format(RegisterPageUI.REGISTER_VALIDATION_ERROR_MSG, errorMessage));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.REGISTER_VALIDATION_ERROR_MSG, errorMessage));
 	}
 
 	public boolean isValidationPasswordErrorMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.VALIDATION_PASSWORD_ERROR_MSG, errorMessage));
-		return isDisplayed(driver, String.format(RegisterPageUI.VALIDATION_PASSWORD_ERROR_MSG, errorMessage));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.VALIDATION_PASSWORD_ERROR_MSG, errorMessage));
 	}
 
 	public boolean isValidationConfirmPasswordErrorMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.VALIDATION_CONFIRM_PASSWORD_ERROR_MSG, errorMessage));
-		return isDisplayed(driver, String.format(RegisterPageUI.VALIDATION_CONFIRM_PASSWORD_ERROR_MSG, errorMessage));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.VALIDATION_CONFIRM_PASSWORD_ERROR_MSG, errorMessage));
 	}
 
 	public boolean isEmailErrorMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.EMAIL_ERROR_MSG, errorMessage));
-		return isDisplayed(driver, String.format(RegisterPageUI.EMAIL_ERROR_MSG, errorMessage));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.EMAIL_ERROR_MSG, errorMessage));
 	}
 
 	public boolean isResultMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.REGISTER_ERROR_MSG, errorMessage));
-		return isDisplayed(driver, String.format(RegisterPageUI.REGISTER_ERROR_MSG, errorMessage));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.REGISTER_ERROR_MSG, errorMessage));
 	}
 
 	public boolean isRegisterSuccessMsgDisplayed(String expectedMessage) {
 		waitForElementVisible(driver, String.format(RegisterPageUI.REGISTER_SUCCESS_MSG, expectedMessage));
-		return isDisplayed(driver, String.format(RegisterPageUI.REGISTER_SUCCESS_MSG, expectedMessage));
+		return isElementDisplayed(driver, String.format(RegisterPageUI.REGISTER_SUCCESS_MSG, expectedMessage));
+	}
+
+	public boolean isFirstNameDisplayed() {
+		String locator = "//input[@id = 'FirstName']";
+		waitForElementVisible(driver, locator);
+		return isElementDisplayed(driver, locator);
+	}
+
+	public boolean isRequestVerificationUndisplayed() {
+		String locator = "//input[@name = '__RequestVerificationToken']";
+		waitForElementInvisible(driver, locator);
+		return isElementUnDisplayed(driver, locator);
+	}
+
+	public boolean isButtonRegisterDisplayed() {
+		String locator = "//input[@class = 'button-1 register-button']";
+		waitForElementInvisible(driver, locator);
+		return isElementDisplayed(driver, locator);
+	}
+
+	public boolean isButtonRegisterUnDisplayed() {
+		String locator = "//input[@class = 'button-1 register-button']";
+		waitForElementInvisible(driver, locator);
+		return isElementUnDisplayed(driver, locator);
 	}
 
 

@@ -15,17 +15,17 @@ public class MyAccountPageObject extends AbstractPages {
 
 	public boolean isWellcomeMsgDisplayed(String expectedText) {
 		waitForElementVisible(driver, String.format(MyAccountPageUI.ACCOUNT_WELLCOME_TEXT, expectedText));
-		return isDisplayed(driver, String.format(MyAccountPageUI.ACCOUNT_WELLCOME_TEXT, expectedText));
+		return isElementDisplayed(driver, String.format(MyAccountPageUI.ACCOUNT_WELLCOME_TEXT, expectedText));
 	}
 
 	public boolean isAccountEmailDisplayed(String expectedEmail) {
 		waitForElementVisible(driver, String.format(MyAccountPageUI.ACCOUNT_EMAIL_TEXT, expectedEmail));
-		return isDisplayed(driver, String.format(MyAccountPageUI.ACCOUNT_EMAIL_TEXT, expectedEmail));
+		return isElementDisplayed(driver, String.format(MyAccountPageUI.ACCOUNT_EMAIL_TEXT, expectedEmail));
 	}
 
 	public boolean isAccountNameDisplayed(String expectedText) {
 		waitForElementVisible(driver, String.format(MyAccountPageUI.ACCOUNT_NAME_TEXT, expectedText));
-		return isDisplayed(driver, String.format(MyAccountPageUI.ACCOUNT_NAME_TEXT, expectedText));
+		return isElementDisplayed(driver, String.format(MyAccountPageUI.ACCOUNT_NAME_TEXT, expectedText));
 	}
 
 	public HomePageObject clickToLogoutLink() {
@@ -38,7 +38,7 @@ public class MyAccountPageObject extends AbstractPages {
 
 	public boolean isRegisterSuccessMsgDisplayed(String expectedText) {
 		waitForElementVisible(driver, String.format(MyAccountPageUI.ACCOUNT_REGISTER_SUCCESS_MSG, expectedText));
-		return isDisplayed(driver, String.format(MyAccountPageUI.ACCOUNT_REGISTER_SUCCESS_MSG, expectedText));
+		return isElementDisplayed(driver, String.format(MyAccountPageUI.ACCOUNT_REGISTER_SUCCESS_MSG, expectedText));
 	}
 
 	
