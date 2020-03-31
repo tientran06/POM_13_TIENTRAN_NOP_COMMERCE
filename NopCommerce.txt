@@ -1,0 +1,4 @@
+2020-03-31 00:26:24,313 INFO  com.nopcommerce.login.Login_10_RegisterAndLogin_DynamicLocator -  -------------------------- PASSED -------------------------- 
+2020-03-31 00:26:55,557 INFO  com.nopcommerce.login.Login_10_RegisterAndLogin_DynamicLocator -  -------------------------- FAILED -------------------------- 
+2020-03-31 00:27:11,646 INFO  com.nopcommerce.login.Login_10_RegisterAndLogin_DynamicLocator - OS name = windows 10
+2020-03-31 00:27:13,325 INFO  com.nopcommerce.login.Login_10_RegisterAndLogin_DynamicLocator - ---------- QUIT BROWSER SUCCESS ----------
