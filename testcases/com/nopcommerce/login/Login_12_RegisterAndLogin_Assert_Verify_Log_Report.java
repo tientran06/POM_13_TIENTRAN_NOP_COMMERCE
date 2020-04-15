@@ -4,9 +4,9 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import commons.AbstractTest;
-import commons.PageGeneratorManager;
 import pageObjects.nopcommerce.HomePageObject;
 import pageObjects.nopcommerce.LoginPageObject;
+import pageObjects.nopcommerce.PageGeneratorManager;
 import pageObjects.nopcommerce.RegisterPageObject;
 
 import org.testng.annotations.BeforeTest;

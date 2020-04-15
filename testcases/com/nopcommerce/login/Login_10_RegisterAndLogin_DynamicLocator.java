@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import com.nopcommerce.common.Common_01_RegisterUser;
 
 import commons.AbstractTest;
-import commons.PageGeneratorManager;
 import pageObjects.nopcommerce.FooterMyAccountPageObject;
 import pageObjects.nopcommerce.HeaderApparelPageObject;
 import pageObjects.nopcommerce.HeaderBooksPageObject;
@@ -14,14 +13,13 @@ import pageObjects.nopcommerce.HeaderGiftCardsPageObject;
 import pageObjects.nopcommerce.HeaderWishlistPageObject;
 import pageObjects.nopcommerce.HomePageObject;
 import pageObjects.nopcommerce.LoginPageObject;
+import pageObjects.nopcommerce.PageGeneratorManager;
 import pageObjects.nopcommerce.SearchPageObject;
 import pageObjects.nopcommerce.ShippingReturnPageObject;
 import pageObjects.nopcommerce.SitemapPageObject;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
-
-import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
@@ -119,22 +117,22 @@ public class Login_10_RegisterAndLogin_DynamicLocator extends AbstractTest {
 	@Test(description = "only use in case more pages")
 	public void TC_05_Dymamic_Header_More() {
 		// 1.Home Page > Computers
-		homePage.openHeaderPagesByName(driver, "Computers ");
+		homePage.openHeaderMenuPagesByName(driver, "Computers ");
 		computersPage = PageGeneratorManager.getHeaderComputerPage(driver);
 		computersPage.sleepInSecond(2);
 
 		// 2. Computers > Apparel
-		computersPage.openHeaderPagesByName(driver, "Apparel ");
+		computersPage.openHeaderMenuPagesByName(driver, "Apparel ");
 		apparelPage = PageGeneratorManager.getHeaderApparelPage(driver);
 		apparelPage.sleepInSecond(2);
 
 		// 3. Apparel > GiftCards
-		apparelPage.openHeaderPagesByName(driver, "Gift Cards ");
+		apparelPage.openHeaderMenuPagesByName(driver, "Gift Cards ");
 		giftCardsPage = PageGeneratorManager.getHeaderGiftCardsPage(driver);
 		giftCardsPage.sleepInSecond(2);
 
 		// 4. GiftCards > BooksPage
-		giftCardsPage.openHeaderPagesByName(driver, "Books ");
+		giftCardsPage.openHeaderMenuPagesByName(driver, "Books ");
 		booksPage = PageGeneratorManager.getHeaderBooksPage(driver);
 		booksPage.sleepInSecond(2);
 
@@ -148,7 +146,7 @@ public class Login_10_RegisterAndLogin_DynamicLocator extends AbstractTest {
 		headerWishListPage.sleepInSecond(2);
 	}
 	@Test()
-	public void TC_05_Close() {
+	public void TC_06_Close() {
 		verifyTrue(false);
 	}
 	

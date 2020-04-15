@@ -3,10 +3,10 @@ package com.nopcommerce.frontend;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import commons.PageGeneratorManager;
 import pageObjects.nopcommerce.HomePageObject;
 import pageObjects.nopcommerce.LoginPageObject;
 import pageObjects.nopcommerce.MyAccountPageObject;
+import pageObjects.nopcommerce.PageGeneratorManager;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;

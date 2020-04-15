@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Nop Commerce" parallel="tests" thread-count="3">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="commons.MethodListener" />
+		<listener class-name="reportConfig.ExtentTestListenerVersion4" />
+	</listeners>
+	<parameter name="url" value="http://demo.guru99.com/v4/" />
+	<parameter name="browser" value="chrome" />
+
+	<test name="Run on FIREFOX">
+		<parameter name="browser" value="firefox" />
+		<classes>
+	<!-- <class name="com.bankguru99.common.Common_01_CreateNewCustomer" /> -->
+	<!-- <class name="com.bankguru99.customer.Customer_01_NewCustomer" /> -->
+			<class name="com.bankguru99.payment.Payment_01_PaymentWorkFollow" />
+		</classes>
+	</test>
+</suite> 

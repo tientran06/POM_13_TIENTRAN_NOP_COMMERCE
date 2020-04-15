@@ -17,5 +17,34 @@
 	<classpathentry kind="lib" path="libraries/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="libraries/reportng-1.1.4.jar"/>
 	<classpathentry kind="lib" path="libraries/velocity-1.4.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/bsh-2.0b4.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/bson-3.3.0.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/extentreports-4.0.9.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/freemarker-2.3.23.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/httpclient-4.5.2.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/httpcore-4.4.4.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/httpmime-4.5.2.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/jcommander-1.48.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/mongodb-driver-3.3.0.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/mongodb-driver-core-3.3.0.jar"/>
+	<classpathentry kind="lib" path="libExtentReportVersion4/testng-6.9.10.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/commons-compress-1.18.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/commons-lang3-3.8.1.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/httpclient-4.5.6.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/httpcore-4.4.10.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/jarchivelib-1.0.0.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/jsoup-1.11.3.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="webdrivermanager-3.6.2/webdrivermanager-3.6.2.jar"/>
+	<classpathentry kind="lib" path="joda-time-2.4/joda-time-2.4-javadoc.jar"/>
+	<classpathentry kind="lib" path="joda-time-2.4/joda-time-2.4-sources.jar"/>
+	<classpathentry kind="lib" path="joda-time-2.4/joda-time-2.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

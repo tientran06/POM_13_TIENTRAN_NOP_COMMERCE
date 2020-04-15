@@ -1,0 +1,1102 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' /> 
+	<meta name='description' content='' />
+	<meta name='robots' content='noodp, noydir' />
+	<meta name='viewport' content='width=device-width, initial-scale=1' />
+	<meta id="timeStampFormat" name="timeStampFormat" content='MMM d, yyyy hh:mm:ss a'/>
+	
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css' />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link href='https://cdn.rawgit.com/extent-framework/extent-github-cdn/b65cd69/v3html/css/extent.css' type='text/css' rel='stylesheet' />
+	
+	<title>Bank Guru E2E Testing</title>
+
+	<style type='text/css'>
+		/* json-tree */
+		.jstBracket,.jstComma,.jstValue{white-space:pre-wrap}.jstValue{font-size:10px;font-weight:400;font-family:"Lucida Console",Monaco,monospace}.jstProperty{color:#666;word-wrap:break-word}.jstBool{color:#2525CC}.jstNum{color:#D036D0}.jstNull{color:gray}.jstStr{color:#2DB669}.jstFold:after{content:' -';cursor:pointer}.jstExpand{white-space:normal}.jstExpand:after{content:' +';cursor:pointer}.jstFolded{white-space:normal!important}.jstHiddenBlock{display:none}
+	</style>
+	
+	<script type="text/javascript">
+		/*! json-tree - v0.2.2 - 2017-09-25, MIT LICENSE */
+		var JSONTree=function(){var n={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;","/":"&#x2F;"},t=0,r=0;this.create=function(n,t){return r+=1,N(u(n,0,!1),{class:"jstValue"})};var e=function(t){return t.replace(/[&<>'"]/g,function(t){return n[t]})},s=function(){return r+"_"+t++},u=function(n,t,r){if(null===n)return f(r?t:0);switch(typeof n){case"boolean":return l(n,r?t:0);case"number":return i(n,r?t:0);case"string":return o(n,r?t:0);default:return n instanceof Array?a(n,t,r):c(n,t,r)}},c=function(n,t,r){var e=s(),u=Object.keys(n).map(function(r){return j(r,n[r],t+1,!0)}).join(m()),c=[g("{",r?t:0,e),N(u,{id:e}),p("}",t)].join("\n");return N(c,{})},a=function(n,t,r){var e=s(),c=n.map(function(n){return u(n,t+1,!0)}).join(m());return[g("[",r?t:0,e),N(c,{id:e}),p("]",t)].join("\n")},o=function(n,t){var r=e(JSON.stringify(n));return N(v(r,t),{class:"jstStr"})},i=function(n,t){return N(v(n,t),{class:"jstNum"})},l=function(n,t){return N(v(n,t),{class:"jstBool"})},f=function(n){return N(v("null",n),{class:"jstNull"})},j=function(n,t,r){var s=v(e(JSON.stringify(n))+": ",r),c=N(u(t,r,!1),{});return N(s+c,{class:"jstProperty"})},m=function(){return N(",\n",{class:"jstComma"})},N=function(n,t){return d("span",t,n)},d=function(n,t,r){return"<"+n+Object.keys(t).map(function(n){return" "+n+'="'+t[n]+'"'}).join("")+">"+r+"</"+n+">"},g=function(n,t,r){return N(v(n,t),{class:"jstBracket"})+N("",{class:"jstFold",onclick:"JSONTree.toggle('"+r+"')"})};this.toggle=function(n){var t=document.getElementById(n),r=t.parentNode,e=t.previousElementSibling;""===t.className?(t.className="jstHiddenBlock",r.className="jstFolded",e.className="jstExpand"):(t.className="",r.className="",e.className="jstFold")};var p=function(n,t){return N(v(n,t),{})},v=function(n,t){return Array(2*t+1).join(" ")+n};return this}();
+	</script>
+</head>
+	<body class='extent dark default hide-overflow '>
+		<div id='theme-selector' alt='Click to toggle theme. To enable by default, use theme configuration.' title='Click to toggle theme. To enable by default, use theme configuration.'>
+			<span><i class='material-icons'>desktop_windows</i></span>
+		</div>
+<nav>
+	<div class="nav-wrapper">
+		<a href="#!" class="brand-logo black"><img src="https://cdn.rawgit.com/extent-framework/extent-github-cdn/d74480e/commons/img/logo.png"></a>
+		<!-- slideout menu -->
+		<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+			<li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
+						<li class='waves-effect'><a href='#!' view='exception-view' onclick="configureView(2)"><i class='material-icons'>bug_report</i></a></li>
+			<li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></a></li>
+			<li class='waves-effect'><a href='#!' onclick="configureView(-1)" view='testrunner-logs-view'><i class='material-icons'>note</i></a></li>
+		</ul>
+		<!-- report name -->
+		<span class='report-name'>Functional UI</span>
+		<!-- report headline -->
+		<span class='report-headline'></span>
+		<!-- nav-right -->
+		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
+			<a href='#!'>
+			<span class='label blue darken-3 suite-start-time'>Apr 15, 2020 10:56:05 PM</span>
+			</a>
+		</ul>
+	</div>
+</nav>		<!-- container -->
+		<div class='container'>
+<div id='test-view' class='view'>
+	<section id='controls'>
+		<div class='controls grey lighten-4'>
+			<!-- test toggle -->
+			<div class='chip transparent'>
+				<a class='dropdown-button tests-toggle' data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#'>
+				<i class='material-icons'>warning</i> Status
+				</a>
+				<ul id='tests-toggle' class='dropdown-content'>
+										<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
+					<li status='fail'><a href='#!'>Fail <i class='material-icons red-text'>cancel</i></a></li>
+					<li class='divider'></li>
+					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
+				</ul>
+			</div>
+			<!-- test toggle -->
+			<!-- category toggle -->
+			<!-- category toggle -->
+			<!-- clear filters -->
+			<div class='chip transparent hide'>
+				<a class='' id='clear-filters' alt='Clear Filters' title='Clear Filters'>
+				<i class='material-icons'>close</i> Clear
+				</a>
+			</div>
+			<!-- clear filters -->
+			<!-- enable dashboard -->
+			<div id='toggle-test-view-charts' class='chip transparent'>
+				<a class='pink-text' id='enable-dashboard' alt='Enable Dashboard' title='Enable Dashboard'>
+				<i class='material-icons'>track_changes</i> Dashboard
+				</a>
+			</div>
+			<!-- enable dashboard -->
+			<!-- search -->
+			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
+				<a href="#" class='search-div'>
+				<i class='material-icons'>search</i> Search
+				</a>
+				<div class='input-field left hide'>
+					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
+				</div>
+			</div>
+			<!-- search -->
+		</div>
+	</section>
+<div id='test-view-charts' class='subview-full'>
+    <div id='charts-row' class='row nm-v nm-h'>
+        <div class='col s12 m12 l12 np-h'>
+            <div class='card-panel nm-v'>
+                <div class='left panel-name'>Tests</div>
+                <div class='chart-box' style="max-height:94px;">
+                    <canvas id='parent-analysis' width='90' height='70'></canvas>
+                </div>
+                <div class='block text-small'>
+                    <span class='tooltipped' data-position='top' data-tooltip='90%'><span class='strong'>9</span> test(s) passed</span>
+                </div>
+                <div class='block text-small'>
+                    <span class='strong tooltipped' data-position='top' data-tooltip='10%'>1</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="timeline-chart" class="row nm-v nm-h">
+        <div class="col s12 m12 l12 np-h">
+            <div class="card-panel">
+                <div class='left panel-name'>Timeline (seconds)</div>
+                <div class="chart-box" style="width:98%;max-height:145px;">
+                    <canvas id="timeline" height="120"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>	<div class='subview-left left'>
+		<div class='view-summary'>
+			<ul id='test-collection' class='test-collection'>
+				<li class='test displayed active  fail' status='fail' bdd='false' test-id='1'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_08_CheckAccountBalance</span>
+						<span class='test-time'>Apr 15, 2020 10:55:06 PM</span>
+						<span class='test-status right fail'>fail</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 15, 2020 10:55:06 PM</span>
+	<span class='label end-time'>Apr 15, 2020 10:56:05 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 59s+802ms</span>
+</div>
+<div class='test-steps'>
+	<table class='bordered table-results'>
+		<thead>
+			<tr>
+				<th>Status</th>
+				<th>Timestamp</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class='log' status='fail'>
+				<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+				<td class='timestamp'>10:56:05 PM</td>
+				<td class='step-details'>
+						<textarea disabled class="code-block">java.lang.AssertionError: expected [105000] but found [100000]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:179)
+	at commons.AbstractTest.checkEquals(AbstractTest.java:147)
+	at commons.AbstractTest.verifyEquals(AbstractTest.java:159)
+	at com.bankguru99.payment.Payment_01_PaymentWorkFollow.TC_08_CheckAccountBalance(Payment_01_PaymentWorkFollow.java:418)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:782)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:400)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</textarea>
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+					</div>
+				</li>
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='2'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_06_WithdrawalFromCurrentAccount</span>
+						<span class='test-time'>Apr 15, 2020 10:54:45 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 15, 2020 10:54:45 PM</span>
+	<span class='label end-time'>Apr 15, 2020 10:56:05 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 1m 20s+802ms</span>
+</div>
+<div class='test-steps'>
+	<table class='bordered table-results'>
+		<thead>
+			<tr>
+				<th>Status</th>
+				<th>Timestamp</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class='log' status='pass'>
+				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+				<td class='timestamp'>10:56:05 PM</td>
+				<td class='step-details'>
+						Test passed
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+					</div>
+				</li>
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='3'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_05_DepositToCurrentAccount</span>
+						<span class='test-time'>Apr 15, 2020 10:54:34 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 15, 2020 10:54:34 PM</span>
+	<span class='label end-time'>Apr 15, 2020 10:56:05 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 1m 31s+53ms</span>
+</div>
+<div class='test-steps'>
+	<table class='bordered table-results'>
+		<thead>
+			<tr>
+				<th>Status</th>
+				<th>Timestamp</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class='log' status='pass'>
+				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+				<td class='timestamp'>10:56:05 PM</td>
+				<td class='step-details'>
+						Test passed
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+					</div>
+				</li>
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='4'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_07_TransferToAnotherAccount</span>
+						<span class='test-time'>Apr 15, 2020 10:54:55 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 15, 2020 10:54:55 PM</span>
+	<span class='label end-time'>Apr 15, 2020 10:56:05 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 1m 10s+916ms</span>
+</div>
+<div class='test-steps'>
+	<table class='bordered table-results'>
+		<thead>
+			<tr>
+				<th>Status</th>
+				<th>Timestamp</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class='log' status='pass'>
+				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+				<td class='timestamp'>10:56:05 PM</td>
+				<td class='step-details'>
+						Test passed
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+					</div>
+				</li>
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='5'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_09_DeleteAllAccount</span>
+						<span class='test-time'>Apr 15, 2020 10:55:23 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 15, 2020 10:55:23 PM</span>
+	<span class='label end-time'>Apr 15, 2020 10:56:05 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 42s+245ms</span>
+</div>
+<div class='test-steps'>
+	<table class='bordered table-results'>
+		<thead>
+			<tr>
+				<th>Status</th>
+				<th>Timestamp</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class='log' status='pass'>
+				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+				<td class='timestamp'>10:56:05 PM</td>
+				<td class='step-details'>
+						Test passed
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+					</div>
+				</li>
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='6'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_10_DeleteCustomer</span>
+						<span class='test-time'>Apr 15, 2020 10:55:51 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 15, 2020 10:55:51 PM</span>
+	<span class='label end-time'>Apr 15, 2020 10:56:05 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 14s+361ms</span>
+</div>
+<div class='test-steps'>
+	<table class='bordered table-results'>
+		<thead>
+			<tr>
+				<th>Status</th>
+				<th>Timestamp</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class='log' status='pass'>
+				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+				<td class='timestamp'>10:56:05 PM</td>
+				<td class='step-details'>
+						Test passed
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+					</div>
+				</li>
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='7'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_03_CreateNewAccount</span>
+						<span class='test-time'>Apr 15, 2020 10:54:01 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 15, 2020 10:54:01 PM</span>
+	<span class='label end-time'>Apr 15, 2020 10:56:05 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 2m 4s+449ms</span>
+</div>
+<div class='test-steps'>
+	<table class='bordered table-results'>
+		<thead>
+			<tr>
+				<th>Status</th>
+				<th>Timestamp</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class='log' status='pass'>
+				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+				<td class='timestamp'>10:56:05 PM</td>
+				<td class='step-details'>
+						Test passed
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+					</div>
+				</li>
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='8'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_01_CreateNewCustomer</span>
+						<span class='test-time'>Apr 15, 2020 10:53:36 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 15, 2020 10:53:36 PM</span>
+	<span class='label end-time'>Apr 15, 2020 10:56:05 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 2m 29s+242ms</span>
+</div>
+<div class='test-steps'>
+	<table class='bordered table-results'>
+		<thead>
+			<tr>
+				<th>Status</th>
+				<th>Timestamp</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class='log' status='pass'>
+				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+				<td class='timestamp'>10:56:05 PM</td>
+				<td class='step-details'>
+						Test passed
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+					</div>
+				</li>
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='9'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_04_EditAccount</span>
+						<span class='test-time'>Apr 15, 2020 10:54:19 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 15, 2020 10:54:19 PM</span>
+	<span class='label end-time'>Apr 15, 2020 10:56:05 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 1m 46s+191ms</span>
+</div>
+<div class='test-steps'>
+	<table class='bordered table-results'>
+		<thead>
+			<tr>
+				<th>Status</th>
+				<th>Timestamp</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class='log' status='pass'>
+				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+				<td class='timestamp'>10:56:05 PM</td>
+				<td class='step-details'>
+						Test passed
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+					</div>
+				</li>
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='10'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_02_EditCustomer</span>
+						<span class='test-time'>Apr 15, 2020 10:53:46 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 15, 2020 10:53:46 PM</span>
+	<span class='label end-time'>Apr 15, 2020 10:56:05 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 2m 19s+458ms</span>
+</div>
+<div class='test-steps'>
+	<table class='bordered table-results'>
+		<thead>
+			<tr>
+				<th>Status</th>
+				<th>Timestamp</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class='log' status='pass'>
+				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+				<td class='timestamp'>10:56:05 PM</td>
+				<td class='step-details'>
+						Test passed
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- subview left -->
+	<div class='subview-right left'>
+		<div class='view-summary'>
+			<div id='step-filters' class="right sr-filters">
+				<a class="btn-floating waves-effect waves-light green" status="pass" alt="pass" title="pass"><i class="material-icons">check_circle</i></a>
+				<a class="btn-floating waves-effect waves-light red" status="fail" alt="fail" title="fail"><i class="material-icons">cancel</i></a>
+				<a class="btn-floating waves-effect waves-light red darken-4" status="fatal" alt="fatal" title="fatal"><i class="material-icons">cancel</i></a>
+				<a class="btn-floating waves-effect waves-light pink text-lighten-1" status="error" alt="error" title="error"><i class="material-icons">error</i></a>
+				<a class="btn-floating waves-effect waves-light orange" alt="warning" status="warning" title="warning"><i class="material-icons">warning</i></a>
+				<a class="btn-floating waves-effect waves-light teal" status="skip" alt="skip" title="skip"><i class="material-icons">redo</i></a>
+				<a class="btn-floating waves-effect waves-light grey" status="clear" alt="Clear filters" title="Clear filters"><i class="material-icons">clear</i></a>
+			</div>
+			<h5 class='test-name'></h5>
+		</div>
+	</div>
+	<!-- subview right -->
+</div>
+<!-- test view --><!-- category view --><div id='exception-view' class='view hide'>
+	<section id='controls'>
+		<div class='controls grey lighten-4'>
+			<!-- search -->
+			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
+				<a href="#" class='search-div'>
+				<i class='material-icons'>search</i> Search
+				</a>
+				<div class='input-field left hide'>
+					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
+				</div>
+			</div>
+			<!-- search -->
+		</div>
+	</section>
+	<div class='subview-left left'>
+		<div class='view-summary'>
+			<ul id='exception-collection' class='exception-collection'>
+				<li class='exception displayed active'>
+					<div class='exception-heading'>
+						<span class='exception-name'>java.lang.AssertionError</span>
+						<span class='exception-count right'><span class='label red lighten-1 white-text'>1</span></span>
+					</div>
+					<div class='exception-content hide'>
+						<div class='exception-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Apr 15, 2020 10:55:06 PM</td>
+										<td class='linked' test-id='1'>TC_08_CheckAccountBalance</td>
+										<td>
+											<textarea disabled class="code-block">java.lang.AssertionError: expected [105000] but found [100000]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:179)
+	at commons.AbstractTest.checkEquals(AbstractTest.java:147)
+	at commons.AbstractTest.verifyEquals(AbstractTest.java:159)
+	at com.bankguru99.payment.Payment_01_PaymentWorkFollow.TC_08_CheckAccountBalance(Payment_01_PaymentWorkFollow.java:418)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:782)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:400)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</textarea>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class='subview-right left'>
+		<div class='view-summary'>
+			<h5 class='exception-name'></h5>
+		</div>
+	</div>
+</div>
+<!-- exception view --><div id='dashboard-view' class='view hide'>
+	<div class='card-panel transparent np-v'>
+		<h5>Dashboard</h5>
+
+		<div class='row'>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Tests
+					<div class='panel-lead'>10</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Steps
+					<div class='panel-lead'>0</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Start
+					<div class='panel-lead'>Apr 15, 2020 10:56:05 PM</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+			 		End
+			 		<div class='panel-lead'>Apr 15, 2020 10:56:05 PM</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Time Taken
+					<div class='panel-lead'>0h 0m 0s+138ms</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- dashboard view -->
+<div id='testrunner-logs-view' class='view hide'>
+	<div class='card-panel transparent np-v'>
+		<h5>TestRunner Logs</h5>
+		
+		<div class='card-panel'>
+				2020-04-15 22:53:26,553 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - User ID is ------------mngr256106
+
+				2020-04-15 22:53:26,554 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Password is ------------jYrYsup
+
+				2020-04-15 22:53:36,584 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Wellcome message: -------------Welcome To Manager's Page of Guru99 Bank
+
+				2020-04-15 22:53:36,589 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:36,670 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:36,687 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_01_CreateNewCustomer - Step 01: Click to 'New Customer' link
+
+				2020-04-15 22:53:38,618 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_01_CreateNewCustomer - Step 02: input value in all fields
+
+				2020-04-15 22:53:41,063 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_01_CreateNewCustomer - Step 03: Click to 'Submit' button
+
+				2020-04-15 22:53:45,817 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_01_CreateNewCustomer - Step 04: Verify Register successfully!!!
+
+				2020-04-15 22:53:45,890 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:45,891 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_01_CreateNewCustomer - Step 05: Verify all information is displayed correctly
+
+				2020-04-15 22:53:45,950 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:46,006 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:46,059 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:46,113 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:46,172 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:46,234 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:46,291 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:46,345 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:46,404 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:46,404 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_01_CreateNewCustomer - Step 06: Get 'Customer ID'
+
+				2020-04-15 22:53:46,453 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Customer ID is : ------------------44066
+
+				2020-04-15 22:53:46,466 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_02_EditCustomer - Step 01 : Click to 'Edit Customer' link
+
+				2020-04-15 22:53:50,085 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_02_EditCustomer - Step 02 : Input 'Customer ID'
+
+				2020-04-15 22:53:50,197 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_02_EditCustomer - Step 03 : Click to 'Submit' button
+
+				2020-04-15 22:53:53,826 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_02_EditCustomer - Step 04 : Verify information can not edit - Disable
+
+				2020-04-15 22:53:53,898 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:53,968 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:54,051 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:54,052 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_02_EditCustomer - Step 05 : Verify information can edit - Enable
+
+				2020-04-15 22:53:54,125 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:54,190 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:53:54,191 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_02_EditCustomer - Step 06 : Input information in Edit's enable fields
+
+				2020-04-15 22:53:55,042 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_02_EditCustomer - Step 07 : Click to 'Submit' button
+
+				2020-04-15 22:54:00,350 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_02_EditCustomer - Step 08 : Verify Customer detail updated successfully
+
+				2020-04-15 22:54:00,481 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:00,481 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_02_EditCustomer - Step 09 : Verify all information is displayed correctly after editing
+
+				2020-04-15 22:54:00,571 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:00,658 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:00,735 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:00,826 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:00,920 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:01,020 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:01,161 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:01,311 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:01,385 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:01,470 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:01,474 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Create Account 1
+
+				2020-04-15 22:54:01,474 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 01 : Click to 'New Account' link
+
+				2020-04-15 22:54:04,380 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 02 : Input information in all fields
+
+				2020-04-15 22:54:04,942 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 03 : Click to 'Submit' button
+
+				2020-04-15 22:54:12,242 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 04 : Verify Created New account 1 successfully
+
+				2020-04-15 22:54:12,316 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:12,317 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 05 : Verify all information is displayed correctly
+
+				2020-04-15 22:54:12,375 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:12,432 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:12,488 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:12,542 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:12,691 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:12,742 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:12,742 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 06 : Get 'Account 1 ID'
+
+				2020-04-15 22:54:12,792 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Account 1 ID is ----------------------------------------77180
+
+				2020-04-15 22:54:12,792 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Current Amount is ----------------------------------------50000
+
+				2020-04-15 22:54:12,792 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Create Account 2
+
+				2020-04-15 22:54:12,792 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 07 : Click to 'New Account' link
+
+				2020-04-15 22:54:14,714 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 08 : Input information in all fields
+
+				2020-04-15 22:54:15,001 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 09 : Click to 'Submit' button
+
+				2020-04-15 22:54:19,220 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 10 : Verify Created New account 2 successfully
+
+				2020-04-15 22:54:19,303 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:19,303 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 11 : Verify all information is displayed correctly
+
+				2020-04-15 22:54:19,365 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:19,420 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:19,476 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:19,539 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:19,604 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:19,663 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:19,664 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_03_CreateNewAccount - Step 12 : Get 'Account 2 ID'
+
+				2020-04-15 22:54:19,724 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Account 2 ID is ----------------------------------------77181
+
+				2020-04-15 22:54:19,724 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Current Amount is ----------------------------------------100000
+
+				2020-04-15 22:54:19,735 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_04_EditAccount - Step 01: Click to 'Edit Account' link
+
+				2020-04-15 22:54:24,656 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_04_EditAccount - Step 02: input 'Account ID'
+
+				2020-04-15 22:54:24,757 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_04_EditAccount - Step 03: Click to 'Submit' link
+
+				2020-04-15 22:54:29,160 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_04_EditAccount - Step 04: Verify information can not edit - Disable
+
+				2020-04-15 22:54:29,235 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:29,292 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:29,293 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_04_EditAccount - Step 05: Edit 'Account Type'
+
+				2020-04-15 22:54:29,595 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_04_EditAccount - Step 06: Click 'Submit' button
+
+				2020-04-15 22:54:34,443 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_04_EditAccount - Step 07: Verify account details updated successfully
+
+				2020-04-15 22:54:34,510 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:34,510 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_04_EditAccount - Step 08: Verify all information is displayed correctly
+
+				2020-04-15 22:54:34,564 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:34,612 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:34,659 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:34,712 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:34,763 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:34,818 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:34,865 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:34,869 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_05_DepositToCurrentAccount - Step 01: Click to 'Deposit' link
+
+				2020-04-15 22:54:39,067 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_05_DepositToCurrentAccount - Step 02: input information in required fields
+
+				2020-04-15 22:54:39,376 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_05_DepositToCurrentAccount - Step 03: Click to 'Submit' button
+
+				2020-04-15 22:54:44,825 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_05_DepositToCurrentAccount - Step 04: Verify Deposit successfully
+
+				2020-04-15 22:54:44,898 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:44,899 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_05_DepositToCurrentAccount - Step 05: Verify all information is displayed successfully
+
+				2020-04-15 22:54:44,954 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:45,005 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:45,060 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Amount Credited = ---------------------------------------------2000
+
+				2020-04-15 22:54:45,060 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:45,115 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - After deposit, amount = ---------------------------------------------52000
+
+				2020-04-15 22:54:45,115 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:45,119 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_06_WithdrawalFromCurrentAccount - Step 01: Click to 'Withdrawal' link
+
+				2020-04-15 22:54:48,954 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_06_WithdrawalFromCurrentAccount - Step 02: input value in required fields
+
+				2020-04-15 22:54:49,284 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_06_WithdrawalFromCurrentAccount - Step 03: Click to 'Submit' button
+
+				2020-04-15 22:54:54,718 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_06_WithdrawalFromCurrentAccount - Step 04: Verify Withdrawal successfully
+
+				2020-04-15 22:54:54,788 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:54,788 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_06_WithdrawalFromCurrentAccount - Step 05: Verify all informaiton displayed correctly
+
+				2020-04-15 22:54:54,846 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:54,905 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:54,953 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:54,953 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Amount Debited is ------------------------------------------------20000
+
+				2020-04-15 22:54:55,002 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Current Balance is ------------------------------------------------32000
+
+				2020-04-15 22:54:55,002 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:54:55,005 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_07_TransferToAnotherAccount - Step 01 : Click 'Fund Transfer' link
+
+				2020-04-15 22:54:59,411 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_07_TransferToAnotherAccount - Step 02 : input value in required fields
+
+				2020-04-15 22:55:00,146 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_07_TransferToAnotherAccount - Step 03 : Click 'Submit' button
+
+				2020-04-15 22:55:05,719 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_07_TransferToAnotherAccount - Step 04 : Verify transfer successfully
+
+				2020-04-15 22:55:05,798 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:05,798 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_07_TransferToAnotherAccount - Step 05 : Verify all information is displayed correctly
+
+				2020-04-15 22:55:05,854 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:05,906 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:05,956 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:06,106 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:06,108 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Balance inquiry account 1
+
+				2020-04-15 22:55:06,108 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_08_CheckAccountBalance - Step 01 : Click to 'Balance Enquiry' link
+
+				2020-04-15 22:55:12,194 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_08_CheckAccountBalance - Step 02 : input 'Account ID'
+
+				2020-04-15 22:55:12,295 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_08_CheckAccountBalance - Step 03 : Click to 'Submit' button
+
+				2020-04-15 22:55:16,938 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_08_CheckAccountBalance - Step 04 : Verify infomation of account is corrected
+
+				2020-04-15 22:55:17,013 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:17,065 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:17,119 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:17,120 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Current Amount of Account 77180 Before Transfer is --------------------------32000
+
+				2020-04-15 22:55:17,177 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:17,228 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Current Amount of Account 77180 After Transfer is --------------------------27000
+
+				2020-04-15 22:55:17,228 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Balance inquiry account 2 ==================== BUG
+
+				2020-04-15 22:55:17,228 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_08_CheckAccountBalance - Step 05 : Click to 'Balance Enquiry' link
+
+				2020-04-15 22:55:19,810 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_08_CheckAccountBalance - Step 06 : input 'Account ID'
+
+				2020-04-15 22:55:19,927 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_08_CheckAccountBalance - Step 07 : Click to 'Submit' button
+
+				2020-04-15 22:55:23,387 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_08_CheckAccountBalance - Step 08 : Verify infomation of account is corrected
+
+				2020-04-15 22:55:23,454 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:23,513 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:23,571 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:23,621 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- FAILED -------------------------- 
+
+				2020-04-15 22:55:23,673 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Current Amount of Account 77181 After is transfered --------------------------100000
+
+				2020-04-15 22:55:23,677 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 01: Click to 'Delete Account' link
+
+				2020-04-15 22:55:26,770 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Delete Account 1
+
+				2020-04-15 22:55:26,771 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 02: input 'Account ID'
+
+				2020-04-15 22:55:26,877 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 03: Click to 'Submit' button
+
+				2020-04-15 22:55:27,036 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 04: Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:55:29,149 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:29,149 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 05: Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:55:32,247 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:32,247 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Verify Delete successfully
+
+				2020-04-15 22:55:32,247 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 06: Click to 'Delete Account' link
+
+				2020-04-15 22:55:35,019 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 07: input 'Account ID'
+
+				2020-04-15 22:55:35,126 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 08: Click to 'Submit' button
+
+				2020-04-15 22:55:35,254 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 09: Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:55:37,341 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:37,341 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 10: Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:55:39,407 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:39,407 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Delete Account 2
+
+				2020-04-15 22:55:39,407 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 11: input 'Account ID'
+
+				2020-04-15 22:55:40,202 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 12: Click to 'Submit' button
+
+				2020-04-15 22:55:40,368 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 13: Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:55:42,434 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:42,434 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 14: Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:55:44,499 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:44,499 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Verify Delete successfully
+
+				2020-04-15 22:55:44,499 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 15: Click to 'Delete Account' link
+
+				2020-04-15 22:55:47,180 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 16: input 'Account ID'
+
+				2020-04-15 22:55:47,299 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 17: Click to 'Submit' button
+
+				2020-04-15 22:55:47,435 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 18: Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:55:49,511 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:49,511 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_09_DeleteAllAccount - Step 19: Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:55:51,559 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:51,561 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_10_DeleteCustomer - Step 01 : Click to 'Delete Customer' link
+
+				2020-04-15 22:55:53,725 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_10_DeleteCustomer - Step 02 : input 'Customer ID'
+
+				2020-04-15 22:55:53,827 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_10_DeleteCustomer - Step 03 : Click to 'Submit' button
+
+				2020-04-15 22:55:53,964 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_10_DeleteCustomer - Step 04 : Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:55:56,071 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:56,071 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_10_DeleteCustomer - Step 05 : Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:55:58,135 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:55:58,135 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - Verify Delete successfully
+
+				2020-04-15 22:55:58,135 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_10_DeleteCustomer - Step 06 : Click to 'Delete Customer' link
+
+				2020-04-15 22:55:59,819 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_10_DeleteCustomer - Step 07 : input 'Customer ID'
+
+				2020-04-15 22:55:59,917 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_10_DeleteCustomer - Step 08 : Click to 'Submit' button
+
+				2020-04-15 22:56:00,043 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_10_DeleteCustomer - Step 09 : Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:56:02,115 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:56:02,115 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - TC_10_DeleteCustomer - Step 10 : Verify Alert's text is displayed and accept it
+
+				2020-04-15 22:56:04,196 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow -  -------------------------- PASSED -------------------------- 
+
+				2020-04-15 22:56:04,198 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - OS name = windows 10
+
+				2020-04-15 22:56:05,533 INFO  com.bankguru99.payment.Payment_01_PaymentWorkFollow - ---------- QUIT BROWSER SUCCESS ----------
+
+		</div>
+	</div>
+</div>
+<!-- testrunner-logs view -->		</div>
+		<!-- container -->
+		<script>
+			var statusGroup = {
+                parentCount: 10,
+				passParent: 9,
+				failParent: 1,
+				fatalParent: 0,
+				errorParent: 0,
+				warningParent: 0,
+				skipParent: 0,
+				exceptionsParent: 1,
+				childCount: 0,
+				passChild: 0,
+				failChild: 0,
+				fatalChild: 0,
+				errorChild: 0,
+				warningChild: 0,
+				skipChild: 0,
+				infoChild: 0,
+				debugChild: 0,
+				exceptionsChild: 0,
+				grandChildCount: 0,
+				passGrandChild: 0,
+				failGrandChild: 0,
+				fatalGrandChild: 0,
+				errorGrandChild: 0,
+				warningGrandChild: 0,
+				skipGrandChild: 0,
+				infoGrandChild: 0,
+				debugGrandChild: 0,
+				exceptionsGrandChild: 0,
+			};
+		</script>
+		<script>
+			var timeline = {
+			        "TC_08_CheckAccountBalance":59.802,"TC_06_WithdrawalFromCurrentAccount":80.802,"TC_05_DepositToCurrentAccount":91.053,"TC_07_TransferToAnotherAccount":70.916,"TC_09_DeleteAllAccount":42.245,"TC_10_DeleteCustomer":14.361,"TC_03_CreateNewAccount":124.449,"TC_01_CreateNewCustomer":149.242,"TC_04_EditAccount":106.191,"TC_02_EditCustomer":139.458
+			};
+		</script>
+		<script src='https://cdn.rawgit.com/extent-framework/extent-github-cdn/b65cd69/v3html/js/extent.js' type='text/javascript'></script>
+		<script type='text/javascript'>
+		</script>
+	</body>
+</html>

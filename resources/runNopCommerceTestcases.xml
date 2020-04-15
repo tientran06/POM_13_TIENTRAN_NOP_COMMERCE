@@ -1,39 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Nop Commerce" parallel="tests" thread-count="3">
 	<listeners>
-			<listener class-name = "org.uncommons.reportng.HTMLReporter" />
-			<listener class-name = "org.uncommons.reportng.JUnitXMLReporter" />
-			<listener class-name = "commons.MethodListener" />
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="commons.MethodListener" />
+		<!-- <listener class-name = "reportConfig.ExtentTestListenerVersion2" /> -->
+		<!-- <listener class-name = "reportConfig.ExtentTestListenerVersion3" /> -->
+		<listener class-name="reportConfig.ExtentTestListenerVersion4" />
 	</listeners>
 	<parameter name="browser" value="firefox" />
 	<test name="Run on CHROME">
 		<parameter name="browser" value="chrome" />
 		<classes>
-<!-- 			<class name="com.nopcommerce.login.Login_12_RegisterAndLogin_Assert_Verify_Log_Report" /> -->
+			<!-- <class name="com.nopcommerce.login.Login_12_RegisterAndLogin_Assert_Verify_Log_Report" /> -->
 
 		</classes>
 	</test>
 
 	<test name="Run on FIREFOX">
 		<parameter name="browser" value="firefox" />
+<!-- 		<classes> -->
+<!-- 			<class name="com.nopcommerce.common.Common_01_RegisterUser" /> -->
+<!-- 			<class name="com.nopcommerce.login.Login_10_RegisterAndLogin_DynamicLocator" /> -->
+<!-- 		</classes> -->
 		<classes>
-<!-- 			<class name="com.nopcommerce.frontend.FrontEnd_03_MyAccount" /> -->
-			<class name="com.nopcommerce.common.Common_01_RegisterUser" />
-			<class name="com.nopcommerce.login.Login_10_RegisterAndLogin_DynamicLocator" />
+			<class name="com.nopcommerce.login.Login_13_RegisterAndLogin_DynamicElement" />
 		</classes>
 	</test>
 
-	<!-- <test name="Run on CHROME HEADLESS"> -->
-	<!-- <parameter name="browser" value="headless_chrome" /> -->
-	<!-- <classes> -->
-	<!-- <class name="com.nopcommerce.login.Login_07_RegisterAndLogin_Multi_Browser_Parallel" /> -->
-	<!-- </classes> -->
-	<!-- </test> -->
 
-	<!-- <test name="Run on FIREFOX HEADLESS"> -->
-	<!-- <parameter name="browser" value="headless_firefox" /> -->
-	<!-- <classes> -->
-	<!-- <class name="com.nopcommerce.login.Login_07_RegisterAndLogin_Multi_Browser_Parallel" /> -->
-	<!-- </classes> -->
-	<!-- </test> -->
 </suite> 

@@ -3,11 +3,11 @@ package com.nopcommerce.login;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import commons.PageGeneratorManager;
 import pageObjects.nopcommerce.FooterMyAccountPageObject;
 import pageObjects.nopcommerce.HeaderWishlistPageObject;
 import pageObjects.nopcommerce.HomePageObject;
 import pageObjects.nopcommerce.LoginPageObject;
+import pageObjects.nopcommerce.PageGeneratorManager;
 import pageObjects.nopcommerce.RegisterPageObject;
 import pageObjects.nopcommerce.SearchPageObject;
 import pageObjects.nopcommerce.ShippingReturnPageObject;

@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,6 +14,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 import org.testng.Reporter;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class AbstractTest {
 	WebDriver driver;
@@ -23,19 +27,27 @@ public class AbstractTest {
 
 	public WebDriver getBrowserDriver(String browserName) {
 		if (browserName.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", ".\\libraries\\chromedriver.exe");
+
+			// System.setProperty("webdriver.chrome.driver", ".\\libraries\\chromedriver.exe");
+			WebDriverManager.chromedriver().version("80.0.3987.16").setup();
 			driver = new ChromeDriver();
 		} else if (browserName.equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
+
+			// System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
+			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		} else if (browserName.equalsIgnoreCase("headless_chrome")) {
-			System.setProperty("webdriver.chrome.driver", ".\\libraries\\chromedriver.exe");
+			
+			//System.setProperty("webdriver.chrome.driver", ".\\libraries\\chromedriver.exe");
+			WebDriverManager.chromedriver().version("80.0.3987.16").setup();
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("headless");
 			options.addArguments("window-size=1920x1080");
 			driver = new ChromeDriver(options);
 		} else if (browserName.equalsIgnoreCase("headless_firefox")) {
-			System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
+
+			//System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
+			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions options = new FirefoxOptions();
 			options.addArguments("headless");
 			options.addArguments("window-size=1920x1080");
@@ -45,6 +57,42 @@ public class AbstractTest {
 
 		driver.get(GlobalConstants.DEV_URL);
 		// driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		return driver;
+	}
+
+	public WebDriver getBrowserDriver(String browserName, String url) {
+		if (browserName.equalsIgnoreCase("chrome")) {
+
+			// System.setProperty("webdriver.chrome.driver", ".\\libraries\\chromedriver.exe");
+			WebDriverManager.chromedriver().version("80.0.3987.16").setup();
+			driver = new ChromeDriver();
+		} else if (browserName.equalsIgnoreCase("firefox")) {
+
+			// System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
+			WebDriverManager.firefoxdriver().setup();
+			driver = new FirefoxDriver();
+		} else if (browserName.equalsIgnoreCase("headless_chrome")) {
+
+			// System.setProperty("webdriver.chrome.driver", ".\\libraries\\chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("headless");
+			options.addArguments("window-size=1920x1080");
+			driver = new ChromeDriver(options);
+		} else if (browserName.equalsIgnoreCase("headless_firefox")) {
+
+			// System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
+			WebDriverManager.firefoxdriver().setup();
+			FirefoxOptions options = new FirefoxOptions();
+			options.addArguments("headless");
+			options.addArguments("window-size=1920x1080");
+			driver = new FirefoxDriver(options);
+
+		}
+
+		driver.get(url);
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		return driver;
 	}
@@ -155,4 +203,32 @@ public class AbstractTest {
 			log.info(e.getMessage());
 		}
 	}
+	
+	protected String getCurrentDay() {
+		DateTime now = new DateTime(DateTimeZone.UTC);
+		int day = now.getDayOfMonth();
+		if (day < 10) {
+			String dayValue = "0" + day;
+			return dayValue;
+		}
+		return String.valueOf(day);
+	}
+	protected String getCurrentMonth() {
+		DateTime now = new DateTime(DateTimeZone.UTC);
+		int month = now.getMonthOfYear();
+		if( month < 10) {
+			String monthValue = "0" + month;
+			return monthValue;
+		}
+		return String.valueOf(month);
+	}
+	protected String getCurrentYear() {
+		DateTime now = new DateTime(DateTimeZone.UTC);
+		return String.valueOf(now.getYear());
+	}
+	
+	protected String getToday() {
+		return getCurrentYear() + "-" + getCurrentMonth() + "-" + getCurrentDay();
+	}
+
 }

@@ -3,7 +3,6 @@ package pageObjects.nopcommerce;
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPages;
-import commons.PageGeneratorManager;
 import pageUIs.nopcommerce.HomePageUI;
 import pageUIs.nopcommerce.SiteMapUI;
 
