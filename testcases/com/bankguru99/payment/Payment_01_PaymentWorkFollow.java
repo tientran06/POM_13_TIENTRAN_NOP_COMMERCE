@@ -137,7 +137,7 @@ public class Payment_01_PaymentWorkFollow extends AbstractTest {
 
 	}
 
-	@Test(description = "Edit Customer and verify edited successfully")
+	@Test(description = "Edit Customer and verify edited successfully", dependsOnMethods = "TC_01_CreateNewCustomer")
 	public void TC_02_EditCustomer() {
 		log.info("TC_02_EditCustomer - Step 01 : Click to 'Edit Customer' link");
 		newCustomerPage.clickToBankGuruMenuLinkByName(driver, "Edit Customer");
@@ -183,10 +183,9 @@ public class Payment_01_PaymentWorkFollow extends AbstractTest {
 		verifyEquals(editCustomerPage.getBankGuruTextByRowName(driver, "Pin"), editpin);
 		verifyEquals(editCustomerPage.getBankGuruTextByRowName(driver, "Mobile No."), editmobileNumber);
 		verifyEquals(editCustomerPage.getBankGuruTextByRowName(driver, "Email"), editemail);
-
 	}
 
-	@Test(description = "Create a new Accound and verify created successfully")
+	@Test(description = "Create a new Accound and verify created successfully", dependsOnMethods = "TC_02_EditCustomer")
 	public void TC_03_CreateNewAccount() {
 
 		log.info("Create Account 1");
@@ -253,7 +252,7 @@ public class Payment_01_PaymentWorkFollow extends AbstractTest {
 		log.info("Current Amount is ----------------------------------------" + currentAmount);
 	}
 
-	@Test(description = "Edit account and verify edited successfully")
+	@Test(description = "Edit account and verify edited successfully", dependsOnMethods = "TC_03_CreateNewAccount")
 	public void TC_04_EditAccount() {
 		
 		log.info("TC_04_EditAccount - Step 01: Click to 'Edit Account' link");
@@ -289,7 +288,7 @@ public class Payment_01_PaymentWorkFollow extends AbstractTest {
 		verifyEquals(editAccountPage.getBankGuruNumberByRowName(driver, "Current Amount"), initDeposit1);
 	}
 
-	@Test(description = "Deposit to current account and verify successfully")
+	@Test(description = "Deposit to current account and verify successfully", dependsOnMethods = "TC_04_EditAccount")
 	public void TC_05_DepositToCurrentAccount() {
 		int amountDeposited;
 		
@@ -321,7 +320,7 @@ public class Payment_01_PaymentWorkFollow extends AbstractTest {
 		verifyEquals(currentAmount, (initDeposit1 + depositAmount));
 	}
 
-	@Test(description = "Withdrawal money from current account")
+	@Test(description = "Withdrawal money from current account", dependsOnMethods = "TC_05_DepositToCurrentAccount")
 	public void TC_06_WithdrawalFromCurrentAccount() {
 		int amountWithdrawal;
 		log.info("TC_06_WithdrawalFromCurrentAccount - Step 01: Click to 'Withdrawal' link");
@@ -353,7 +352,7 @@ public class Payment_01_PaymentWorkFollow extends AbstractTest {
 		verifyEquals(currentAmount, (initDeposit1 + depositAmount - withdrawalAmount));
 	}
 
-	@Test(description = "Transfer to Another Account and verify transfered successfully")
+	@Test(description = "Transfer to Another Account and verify transfered successfully", dependsOnMethods = "TC_06_WithdrawalFromCurrentAccount")
 	public void TC_07_TransferToAnotherAccount() {
 		log.info("TC_07_TransferToAnotherAccount - Step 01 : Click 'Fund Transfer' link");
 		withdrawalPage.clickToBankGuruMenuLinkByName(driver, "Fund Transfer");
@@ -378,7 +377,7 @@ public class Payment_01_PaymentWorkFollow extends AbstractTest {
 		verifyEquals(fundTransferPage.getBankGuruTextByRowName(driver, "Description"), "Transfer");
 	}
 
-	@Test(description = "Check Account Balance after Deposit / Withdrawal / Transfer")
+	@Test(description = "Check Account Balance after Deposit / Withdrawal / Transfer", dependsOnMethods = "TC_07_TransferToAnotherAccount")
 	public void TC_08_CheckAccountBalance() {
 		log.info("Balance inquiry account 1");
 		log.info("TC_08_CheckAccountBalance - Step 01 : Click to 'Balance Enquiry' link");
@@ -419,7 +418,7 @@ public class Payment_01_PaymentWorkFollow extends AbstractTest {
 		log.info("Current Amount of Account " + account2ID + " After is transfered --------------------------" + balanceEnquiryPage.getBankGuruNumberByRowName(driver, "Balance"));
 	}
 
-	@Test(description = "Delete all Account")
+	@Test(description = "Delete all Account", dependsOnMethods = "TC_08_CheckAccountBalance")
 	public void TC_09_DeleteAllAccount() {
 		log.info("TC_09_DeleteAllAccount - Step 01: Click to 'Delete Account' link");
 		balanceEnquiryPage.clickToBankGuruMenuLinkByName(driver, "Delete Account");
@@ -484,7 +483,7 @@ public class Payment_01_PaymentWorkFollow extends AbstractTest {
 		verifyTrue(deleteAccountPage.verifyBankGuruAlertTextandAcceptAlert(driver, "Account does not exist"));
 	}
 
-	@Test(description = "Delete Customer")
+	@Test(description = "Delete Customer", dependsOnMethods = "TC_09_DeleteAllAccount")
 	public void TC_10_DeleteCustomer() {
 		log.info("TC_10_DeleteCustomer - Step 01 : Click to 'Delete Customer' link");
 		deleteAccountPage.clickToBankGuruMenuLinkByName(driver, "Delete Customer");
