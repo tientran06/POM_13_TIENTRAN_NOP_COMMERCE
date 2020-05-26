@@ -1,0 +1,26 @@
+1589860265974	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-private" "-foreground" "-no-remote" "-profile" "C:\\Users\\Admin\\AppData\\Local\\Temp\\rust_mozprofile38QYF1"
+1589860266575	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589860266601	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589860266601	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589860266601	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589860266601	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: chrome://browser/content/aboutPrivateBrowsing.js, line 8: ReferenceError: RPMIsWindowPrivate is not defined
+WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate. Use isContentWindowPrivate instead (but only for frame scripts).
+pbu_isWindowPrivate@resource://gre/modules/PrivateBrowsingUtils.jsm:27:11
+isBrowserPrivate@resource://gre/modules/PrivateBrowsingUtils.jsm:47:19
+loadURI@resource://gre/modules/RemoteWebNavigation.jsm:70:51
+loadURI/<@chrome://global/content/elements/browser-custom-element.js:1008:28
+_wrapURIChangeCall@chrome://global/content/elements/browser-custom-element.js:947:9
+loadURI@chrome://global/content/elements/browser-custom-element.js:1007:12
+render/<@chrome://mozapps/content/extensions/aboutaddons.js:1979:15
+render@chrome://mozapps/content/extensions/aboutaddons.js:1937:11
+1589860269621	Marionette	INFO	Listening on port 65159
+1589860269799	Marionette	WARN	TLS certificate errors will be ignored for this session
+1589860272585	Marionette	INFO	Stopped listening on port 65159
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+

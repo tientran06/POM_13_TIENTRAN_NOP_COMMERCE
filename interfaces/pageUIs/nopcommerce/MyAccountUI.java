@@ -10,4 +10,17 @@ public class MyAccountUI {
 	public static final String EMAIL_TEXTBOX = "//input[@id = 'Email']";
 	public static final String COMPANY_TEXTBOX = "//input[@id = 'Company']";
 	public static final String SAVE_BUTTON = "//input[@value = 'Save']";
+
+	// Dropdown selected
+	public static final String DYNAMIC_DROPDOWN_SELECTED = "//select[@name='%s']//option[text() = '%s']";
+	// Account address infor
+	public static final String ADDRESS_ACCOUNT_NAME_INFOR = "//div[@class = 'title']//strong[text() = '%s']";
+
+	// Address information
+	public static final String DYNAMIC_ADDRESS_INFOR = "//ul[@class = 'info']//li[@class = '%s' and contains(.,'%s')]";
+	public static final String DYNAMIC_ADDRESS_TEXT_INFOR = "//ul[@class = 'info']//li[@class = '%s']";
+	// Result successfully MSG
+	public static final String DYNAMIC_RESULT_MSG = "//div[@class = 'result' and contains(.,'%s')]";
+	
+
 }

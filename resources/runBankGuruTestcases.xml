@@ -7,14 +7,14 @@
 		<listener class-name="reportConfig.ExtentTestListenerVersion4" />
 	</listeners>
 	<parameter name="url" value="http://demo.guru99.com/v4/" />
-	<parameter name="browser" value="chrome" />
+	<parameter name="browser" value="firefox" />
 
 	<test name="Run on FIREFOX">
 		<parameter name="browser" value="firefox" />
 		<classes>
-	<!-- <class name="com.bankguru99.common.Common_01_CreateNewCustomer" /> -->
-	<!-- <class name="com.bankguru99.customer.Customer_01_NewCustomer" /> -->
-			<class name="com.bankguru99.payment.Payment_01_PaymentWorkFollow" />
+			<class name="com.bankguru99.common.Common_01_CreateNewCustomer" />
+			<class name="com.bankguru99.customer.Customer_01_NewCustomer" />
+<!-- 			<class name="com.bankguru99.payment.Payment_01_PaymentWorkFollow" /> -->
 		</classes>
 	</test>
 </suite> 

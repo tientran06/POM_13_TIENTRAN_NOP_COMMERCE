@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="testcases"/>
+	<classpathentry kind="src" path="testdata"/>
 	<classpathentry kind="src" path="actions"/>
 	<classpathentry kind="src" path="interfaces"/>
 	<classpathentry kind="src" path="resources"/>
@@ -46,5 +47,12 @@
 	<classpathentry kind="lib" path="joda-time-2.4/joda-time-2.4-javadoc.jar"/>
 	<classpathentry kind="lib" path="joda-time-2.4/joda-time-2.4-sources.jar"/>
 	<classpathentry kind="lib" path="joda-time-2.4/joda-time-2.4.jar"/>
+	<classpathentry kind="lib" path="javaFaker/commons-lang3-3.5.jar"/>
+	<classpathentry kind="lib" path="javaFaker/generex-1.0.2.jar"/>
+	<classpathentry kind="lib" path="javaFaker/javafaker-1.0.1.jar"/>
+	<classpathentry kind="lib" path="javaFaker/snakeyaml-1.23.jar"/>
+	<classpathentry kind="lib" path="libJaskson/jackson-annotations-2.10.0.jar"/>
+	<classpathentry kind="lib" path="libJaskson/jackson-core-2.10.0.jar"/>
+	<classpathentry kind="lib" path="libJaskson/jackson-databind-2.10.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

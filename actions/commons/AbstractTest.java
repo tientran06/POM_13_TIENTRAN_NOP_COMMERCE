@@ -1,5 +1,10 @@
 package commons;
 
+import java.io.File;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -10,8 +15,13 @@ import org.joda.time.DateTimeZone;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
 import org.testng.Assert;
 import org.testng.Reporter;
 
@@ -20,11 +30,20 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class AbstractTest {
 	WebDriver driver;
 	protected final Log log;
+	protected String rootFolder = System.getProperty("user.dir");
 
 	public AbstractTest() {
 		log = LogFactory.getLog(getClass());
 	}
 
+	protected void printBrowserConsolelogs(WebDriver driver) {
+		LogEntries logs = driver.manage().logs().get("browser");
+		List<LogEntry> logList = logs.getAll();
+		for (LogEntry logging : logList) {
+			log.info("--------------------" + logging.getLevel().toString() + "----------------- \n" + logging.getMessage());
+		}
+	}
+	
 	public WebDriver getBrowserDriver(String browserName) {
 		if (browserName.equalsIgnoreCase("chrome")) {
 
@@ -63,32 +82,86 @@ public class AbstractTest {
 
 	public WebDriver getBrowserDriver(String browserName, String url) {
 		if (browserName.equalsIgnoreCase("chrome")) {
-
-			// System.setProperty("webdriver.chrome.driver", ".\\libraries\\chromedriver.exe");
-			WebDriverManager.chromedriver().version("80.0.3987.16").setup();
-			driver = new ChromeDriver();
+			WebDriverManager.chromedriver().setup();
+			File transfer = new File(rootFolder + "\\BrowserExtensions\\google_translate.crx");
+			//File adblock = new File(rootFolder + "\\BrowserExtensions\\adblock.crx");
+			
+			System.setProperty("webdriver.chrome.args", "--disable-logging");
+			System.setProperty("webdriver.chrome.silentOutput", "true");
+			ChromeOptions options = new ChromeOptions();
+			
+			//Auto save
+			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+			chromePrefs.put("profile.default_content_setting.popup", 0);
+			chromePrefs.put("download.default_directory", rootFolder +  "\\fileDownloaded");
+			options.setExperimentalOption("prefs", chromePrefs);
+			
+			options.addExtensions(transfer);
+			//options.addExtensions(adblock);
+			options.addArguments("-lang=en");
+			
+			options.setExperimentalOption("useAutomationExtension", false);
+			options.setExperimentalOption("excludeSwitches",Collections.singletonList("enable-automation"));
+			options.addArguments("--disable-notifications");
+			options.addArguments("start-maximized");
+			options.addArguments("disable-geolocation");
+			options.addArguments("--disable-infobars");
+			options.addArguments("--disable-extensions");
+			options.addArguments("--incognito");
+			
+			driver = new ChromeDriver(options);
+			
 		} else if (browserName.equalsIgnoreCase("firefox")) {
-
-			// System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
+			//System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
 			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
+			
+			System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
+			System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, rootFolder + "\\browserLogs\\Firefox.log");
+			
+			FirefoxProfile profile = new FirefoxProfile();
+			File transfer = new File(rootFolder + "\\BrowserExtensions\\google_translate.xpi");
+			profile.addExtension(transfer);
+			
+			FirefoxOptions options = new FirefoxOptions();
+			
+			// Auto save
+			
+			options.addPreference("browser.download.folderlist", 2);
+			options.addPreference("browser.download.dir", rootFolder + "\\fileDownloaded");
+			options.addPreference("browser.download.useDownloadDir", true);
+			
+			options.setProfile(profile);
+			options.addPreference("intl.accept_languages", "vi");
+			options.addArguments("-private");
+			driver = new FirefoxDriver(options);
+			
 		} else if (browserName.equalsIgnoreCase("headless_chrome")) {
-
-			// System.setProperty("webdriver.chrome.driver", ".\\libraries\\chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
-			options.addArguments("headless");
+			//options.addArguments("headless");
+			options.setHeadless(true);
 			options.addArguments("window-size=1920x1080");
 			driver = new ChromeDriver(options);
 		} else if (browserName.equalsIgnoreCase("headless_firefox")) {
-
-			// System.setProperty("webdriver.gecko.driver", ".\\libraries\\geckodriver.exe");
+			
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions options = new FirefoxOptions();
-			options.addArguments("headless");
+			//options.addArguments("headless");
+			options.setHeadless(true);
 			options.addArguments("window-size=1920x1080");
 			driver = new FirefoxDriver(options);
 
+		} else if (browserName.equalsIgnoreCase("internetexplorer")) {
+			WebDriverManager.iedriver().arch32().setup();
+			driver = new InternetExplorerDriver();
+			
+		} else if (browserName.equalsIgnoreCase("edge")) {
+			// Edge Legacy
+			//System.setProperty("webdriver.edge.driver", ".\\libraries\\MicrosoftWebDriver.exe");
+			
+			// Edge new version
+			//System.setProperty("webdriver.edge.driver", ".\\libraries\\msedgedriver.exe");
+			driver = new EdgeDriver();
 		}
 
 		driver.get(url);
@@ -143,14 +216,17 @@ public class AbstractTest {
 
 	private boolean checkEquals(Object actual, Object expected) {
 		boolean pass = true;
+		overrideTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		try {
 			Assert.assertEquals(actual, expected);
 			log.info(" -------------------------- PASSED -------------------------- ");
+			overrideTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 		} catch (Throwable e) {
 			pass = false;
 			log.info(" -------------------------- FAILED -------------------------- ");
 			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
 			Reporter.getCurrentTestResult().setThrowable(e);
+			overrideTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 		}
 		return pass;
 	}
@@ -164,6 +240,10 @@ public class AbstractTest {
 		return ran.nextInt(5000);
 
 	}
+	
+	public void overrideTimeout(WebDriver driver, long timeOut) {
+		driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
+	}
 
 	protected void closeBrowserAndDriver(WebDriver driver) {
 		try {
@@ -174,6 +254,7 @@ public class AbstractTest {
 			// Khai báo 1 biến command line để thực thi
 			String cmd = "";
 			if (driver != null) {
+				driver.manage().deleteAllCookies();
 				driver.quit();
 			}
 
@@ -230,5 +311,5 @@ public class AbstractTest {
 	protected String getToday() {
 		return getCurrentYear() + "-" + getCurrentMonth() + "-" + getCurrentDay();
 	}
-
+	
 }

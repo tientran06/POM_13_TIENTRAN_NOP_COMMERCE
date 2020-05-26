@@ -1,0 +1,2 @@
+2020-05-19 10:51:12,568 INFO  com.nopcommerce.login.Login_17_RegisterAndLogin_DataJSon - OS name = windows 10
+2020-05-19 10:51:14,291 INFO  com.nopcommerce.login.Login_17_RegisterAndLogin_DataJSon - ---------- QUIT BROWSER SUCCESS ----------

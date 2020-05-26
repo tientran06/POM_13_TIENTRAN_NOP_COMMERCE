@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Nop Commerce" parallel="tests" thread-count="3">
+<suite name="Nop Commerce" parallel="false" thread-count="3">
 	<listeners>
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />
 		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
@@ -9,24 +9,33 @@
 		<listener class-name="reportConfig.ExtentTestListenerVersion4" />
 	</listeners>
 	<parameter name="browser" value="firefox" />
-	<test name="Run on CHROME">
-		<parameter name="browser" value="chrome" />
-		<classes>
-			<!-- <class name="com.nopcommerce.login.Login_12_RegisterAndLogin_Assert_Verify_Log_Report" /> -->
-
-		</classes>
-	</test>
-
-	<test name="Run on FIREFOX">
+	<parameter name="url" value="https://demo.nopcommerce.com/" />
+	
+	<test name="Run on EDGE">
 		<parameter name="browser" value="firefox" />
-<!-- 		<classes> -->
-<!-- 			<class name="com.nopcommerce.common.Common_01_RegisterUser" /> -->
-<!-- 			<class name="com.nopcommerce.login.Login_10_RegisterAndLogin_DynamicLocator" /> -->
-<!-- 		</classes> -->
 		<classes>
-			<class name="com.nopcommerce.login.Login_13_RegisterAndLogin_DynamicElement" />
+			<class name="com.nopcommerce.login.Login_17_RegisterAndLogin_DataJSon" />
 		</classes>
 	</test>
 
+<!-- 	<test name="Run on IE"> -->
+<!-- 		<parameter name="browser" value="internetexplorer" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.nopcommerce.login.Login_14_Sort_Asc_Desc" /> -->
+<!-- 			<class name="com.nopcommerce.login.Login_13_RegisterAndLogin_DynamicElement" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
+	<!-- <test name="Run on headless_chrome"> -->
+	<!-- <parameter name="browser" value="headless_chrome" /> -->
+	<!-- <classes> -->
+	<!-- <class name="com.nopcommerce.login.Login_14_Sort_Asc_Desc" /> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+	<!-- <test name="Run on headless_firefox"> -->
+	<!-- <parameter name="browser" value="headless_firefox" /> -->
+	<!-- <classes> -->
+	<!-- <class name="com.nopcommerce.login.Login_14_Sort_Asc_Desc" /> -->
+	<!-- </classes> -->
+	<!-- </test> -->
 </suite> 

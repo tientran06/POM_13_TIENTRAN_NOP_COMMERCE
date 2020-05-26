@@ -19,10 +19,10 @@ public class Common_01_RegisterUser extends AbstractTest {
 	private HomePageObject homePage;
 	private RegisterPageObject registerPage;
 
-	@Parameters({ "browser" })
+	@Parameters({ "browser", "url" })
 	@BeforeSuite
-	public void createUser(@Optional("chrome") String browserName) {
-		driver = getBrowserDriver(browserName);
+	public void createUser(@Optional("chrome") String browserName, String url) {
+		driver = getBrowserDriver(browserName, url);
 
 		// >> Home page
 		homePage = PageGeneratorManager.getHomePage(driver);

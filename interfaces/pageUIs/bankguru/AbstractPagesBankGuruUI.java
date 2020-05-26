@@ -28,4 +28,5 @@ public class AbstractPagesBankGuruUI {
 	
 	// Validation message
 	public static final String DYNAMIC_VALIDATION_MSG = "//label[@id = '%s']";
+	
 }

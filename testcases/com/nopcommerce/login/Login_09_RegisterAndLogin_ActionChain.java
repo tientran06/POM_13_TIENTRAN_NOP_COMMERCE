@@ -96,23 +96,23 @@ public class Login_09_RegisterAndLogin_ActionChain extends AbstractTest {
 
 		//1.Home Page > Search
 		searchPage = homePage.openFooterSearchPage(driver);
-		searchPage.sleepInSecond(2);
+		searchPage.sleepInSecond(driver,2);
 		
 		//2. Search > Shipping and Return
 		shippingReturnPage = searchPage.openShippingReturnPage(driver);
-		shippingReturnPage.sleepInSecond(2);
+		shippingReturnPage.sleepInSecond(driver,2);
 		
 		//3. Shipping and Return > Sitemap
 		sitemapPage = shippingReturnPage.openSitemapPage(driver);
-		sitemapPage.sleepInSecond(2);
+		sitemapPage.sleepInSecond(driver,2);
 		
 		//4. Sitemap > Footer My Account
 		footerMyAccountPage = sitemapPage.openFooterMyAccountPage(driver);
-		footerMyAccountPage.sleepInSecond(2);
+		footerMyAccountPage.sleepInSecond(driver,2);
 		
 		//5. Home Page > Header Wishlist
 		headerWishListPage = homePage.openHeaderWishlistPage(driver);
-		headerWishListPage.sleepInSecond(2);
+		headerWishListPage.sleepInSecond(driver,2);
 	}
 
 	public int randomNumber() {

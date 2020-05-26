@@ -34,19 +34,19 @@ public class Handle_DataTable_Grid extends AbstractPages {
 
 		goToPageByPageNumber("5");
 		Assert.assertTrue(isPageNumberActived("5"));
-		sleepInSecond(2);
+		sleepInSecond(driver,2);
 
 		goToPageByPageNumber("7");
 		Assert.assertTrue(isPageNumberActived("7"));
-		sleepInSecond(2);
+		sleepInSecond(driver,2);
 
 		goToPageByPageNumber("16");
 		Assert.assertTrue(isPageNumberActived("16"));
-		sleepInSecond(2);
+		sleepInSecond(driver,2);
 
 		goToPageByPageNumber("20");
 		Assert.assertTrue(isPageNumberActived("20"));
-		sleepInSecond(2);
+		sleepInSecond(driver,2);
 	}
 
 	@Test
@@ -58,18 +58,18 @@ public class Handle_DataTable_Grid extends AbstractPages {
 		openUrl(driver, "https://www.jqueryscript.net/demo/CRUD-Data-Grid-Plugin-jQuery-Quickgrid/");
 
 		clickToIconNameByCountry("Algeria", "remove");
-		sleepInSecond(5);
+		sleepInSecond(driver,5);
 
 		clickToIconNameByCountry("Afghanistan", "edit");
 		clickToElement(driver, closeButton);
-		sleepInSecond(5);
+		sleepInSecond(driver,5);
 
 		clickToIconNameByCountry("Albania", "remove");
-		sleepInSecond(5);
+		sleepInSecond(driver,5);
 
 		clickToIconNameByCountry("Antigua and Barbuda", "edit");
 		clickToElement(driver, closeButton);
-		sleepInSecond(5);
+		sleepInSecond(driver,5);
 	}
 
 	@Test
@@ -95,15 +95,15 @@ public class Handle_DataTable_Grid extends AbstractPages {
 		
 		inputToTextBoxByColumnNameAndRowNumber("company", "2", "Automation");
 		inputToTextBoxByColumnAndRow("Company", "1", "Selenium Testing");
-		sleepInSecond(2);
+		sleepInSecond(driver,2);
 		
 		inputToTextBoxByColumnNameAndRowNumber("orderPlaced", "3", "Testing");
 		inputToTextBoxByColumnAndRow("Order Placed", "1", "HCM");
-		sleepInSecond(2);
+		sleepInSecond(driver,2);
 		
 		inputToTextBoxByColumnNameAndRowNumber("name", "1", "John Michel");
 		inputToTextBoxByColumnAndRow("Contact Person", "2", "Michel Kock");
-		sleepInSecond(2);
+		sleepInSecond(driver,2);
 		
 	}
 	
@@ -112,15 +112,15 @@ public class Handle_DataTable_Grid extends AbstractPages {
 		openUrl(driver, "https://www.jqueryscript.net/demo/jQuery-Dynamic-Data-Grid-Plugin-appendGrid/");
 		
 		clickToButtonByRow("2", "Remove");
-		sleepInSecond(2);
+		sleepInSecond(driver,2);
 		clickToButtonByRow("1", "Insert");
-		sleepInSecond(2);
+		sleepInSecond(driver,2);
 		inputToTextBoxByColumnAndRow("Contact Person", "2", "Michel Kock");
 		clickToButtonByRow("2", "Move Up");
-		sleepInSecond(3);
+		sleepInSecond(driver,3);
 		inputToTextBoxByColumnAndRow("Order Placed", "3", "HCM");
 		clickToButtonByRow("3", "Move Down");
-		sleepInSecond(3);
+		sleepInSecond(driver,3);
 	}
 	// go to page by Page Number
 	public void goToPageByPageNumber(String pageNumber) {

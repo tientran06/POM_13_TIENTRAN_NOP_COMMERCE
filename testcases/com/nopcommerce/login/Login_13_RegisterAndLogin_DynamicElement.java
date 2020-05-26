@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 
 import commons.AbstractTest;
-import pageObjects.nopcommerce.HeaderSubDeskTopPageObject;
+import pageObjects.nopcommerce.HeaderDeskTopPageObject;
 import pageObjects.nopcommerce.HeaderApparelPageObject;
 import pageObjects.nopcommerce.HeaderBooksPageObject;
 import pageObjects.nopcommerce.HeaderComputersPageObject;
@@ -32,12 +32,12 @@ public class Login_13_RegisterAndLogin_DynamicElement extends AbstractTest {
 	private HeaderBooksPageObject booksPage;
 	private HeaderGiftCardsPageObject giftCardsPage;
 	private HeaderComputersPageObject computersPage;
-	private HeaderSubDeskTopPageObject desktopPage;
+	private HeaderDeskTopPageObject desktopPage;
 
-	@Parameters("browser")
+	@Parameters({"browser","url"})
 	@BeforeTest
-	public void beforeTest(String browserName) {
-		driver = getBrowserDriver(browserName);
+	public void beforeTest(String browserName, String url) {
+		driver = getBrowserDriver(browserName, url);
 
 		// >> Home page
 		homePage = PageGeneratorManager.getHomePage(driver);
@@ -53,7 +53,7 @@ public class Login_13_RegisterAndLogin_DynamicElement extends AbstractTest {
 	@Test
 	public void TC_01_RegisterToSystem() {
 		// Click to Register >> Register page
-		homePage.openHeaderLinkPagesByName(driver, "Register");
+		homePage.clickToHeaderLinkPagesByName(driver, "Register");
 		registerPage = PageGeneratorManager.getRegisterPage(driver);
 		
 		// Register page >> input First name / Last name
@@ -76,15 +76,14 @@ public class Login_13_RegisterAndLogin_DynamicElement extends AbstractTest {
 		verifyTrue(registerPage.isRegisterSuccessMsgDisplayed("Your registration completed"));
 		
 		// Click Log out link >> HomePage
-		registerPage.openHeaderLinkPagesByName(driver, "Log out");
+		registerPage.clickToHeaderLinkPagesByName(driver, "Log out");
 		homePage = PageGeneratorManager.getHomePage(driver);
-
 	}
 
 	@Test
 	public void TC_02_LoginToSystem() {
 		// click to log in >> Login Page
-		homePage.openHeaderLinkPagesByName(driver, "Log in");
+		homePage.clickToHeaderLinkPagesByName(driver, "Log in");
 		loginPage = PageGeneratorManager.getLoginPage(driver);
 
 		loginPage.inputToNopCommerceTextboxByID(driver, "Email", email);
@@ -104,39 +103,39 @@ public class Login_13_RegisterAndLogin_DynamicElement extends AbstractTest {
 		// 1.Home Page > Computers
 		homePage.openHeaderMenuPagesByName(driver, "Computers");
 		computersPage = PageGeneratorManager.getHeaderComputerPage(driver);
-		computersPage.sleepInSecond(2);
+		computersPage.sleepInSecond(driver,2);
 
 		// 2. Computers > Apparel
 		computersPage.openHeaderMenuPagesByName(driver, "Apparel");
 		apparelPage = PageGeneratorManager.getHeaderApparelPage(driver);
-		apparelPage.sleepInSecond(2);
+		apparelPage.sleepInSecond(driver,2);
 
 		// 3. Apparel > GiftCards
 		apparelPage.openHeaderMenuPagesByName(driver, "Gift Cards");
 		giftCardsPage = PageGeneratorManager.getHeaderGiftCardsPage(driver);
-		giftCardsPage.sleepInSecond(2);
+		giftCardsPage.sleepInSecond(driver,2);
 
 		// 4. GiftCards > BooksPage
 		giftCardsPage.openHeaderMenuPagesByName(driver, "Books");
 		booksPage = PageGeneratorManager.getHeaderBooksPage(driver);
-		booksPage.sleepInSecond(2);
+		booksPage.sleepInSecond(driver,2);
 
 		// 5. BooksPage > Homepage
 		booksPage.openHomePage(driver);
 		homePage = PageGeneratorManager.getHomePage(driver);
-		homePage.sleepInSecond(2);
+		homePage.sleepInSecond(driver,2);
 	}
 	@Test(description = "only use in case more pages")
 		public void TC_04_Dymamic_Header_Sub_Menu_More() {
 			// 1.Home Page > Computers >> Desktops
 			homePage.openHeaderSubMenuPagesByName(driver, "Computers", "Desktops");
-			desktopPage = PageGeneratorManager.getHeaderSubDeskTopPage(driver);
-			desktopPage.sleepInSecond(2);
+			desktopPage = PageGeneratorManager.getHeaderDeskTopPage(driver);
+			desktopPage.sleepInSecond(driver,2);
 
 			// 2. Computers > Apparel
 			desktopPage.openHeaderSubMenuPagesByName(driver, "Apparel", "Clothing");
 			apparelPage = PageGeneratorManager.getHeaderApparelPage(driver);
-			apparelPage.sleepInSecond(2);
+			apparelPage.sleepInSecond(driver,2);
 		}
 
 	@AfterTest(alwaysRun = true)

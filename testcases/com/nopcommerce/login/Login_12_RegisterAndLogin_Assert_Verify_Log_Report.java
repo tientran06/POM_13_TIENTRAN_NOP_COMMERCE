@@ -23,9 +23,9 @@ public class Login_12_RegisterAndLogin_Assert_Verify_Log_Report extends Abstract
 
 	private WebDriver driver;
 	SoftAssert soft;
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
+	HomePageObject homePage;
+	RegisterPageObject registerPage;
+	LoginPageObject loginPage;
 	String email, passWord;
 
 	@Parameters("browser")

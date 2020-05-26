@@ -35,7 +35,7 @@ public class LoginPageObject extends AbstractPages{
 		return isElementDisplayed(driver, String.format(LoginPageUI.EMAIL_ERROR_MSG, errorMessage));
 	}
 
-	public boolean isValidationErrorMsgDisplayed(String errorMessage) {
+	public boolean isResultErrorMsgDisplayed(String errorMessage) {
 		waitForElementVisible(driver, String.format(LoginPageUI.VALIDATION_ERROR_MSG, errorMessage));
 		return isElementDisplayed(driver, String.format(LoginPageUI.VALIDATION_ERROR_MSG, errorMessage));
 	}

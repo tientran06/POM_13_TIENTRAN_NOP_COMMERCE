@@ -11,13 +11,22 @@
 	</appender>
 
 	<appender name="logfile" class="org.apache.log4j.FileAppender">
-		<param name="File" value="NopCommerce.txt" />
+		<param name="File" value="./logTestscript/NopCommerce.txt" />
 		<param name="Append" value="false" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d %-5p %c - %m%n" />
 		</layout>
 	</appender>
-
+	<appender name="file" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value= "./logTestscript/NopCommerce.log" />
+		<param name="Append" value="true" />
+		<param name = "maxFileSize" value ="10MB" />
+		<param name = "maxBackupIndex" value ="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c - %m%n" />
+		</layout>
+	</appender>
+	
 	<appender name="testng" class="commons.TestNGAppender">
 		<param name="Threshold" value="INFO" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -25,7 +34,7 @@
 		</layout>
 	</appender>
 
-	<category name="com.nopcommerce.login">
+	<category name="com.nopcommerce">
 		<priority value="all" />
 		<appender-ref ref="console" />
 		<appender-ref ref="logfile" />

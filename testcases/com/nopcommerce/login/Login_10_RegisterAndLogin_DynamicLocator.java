@@ -61,27 +61,27 @@ public class Login_10_RegisterAndLogin_DynamicLocator extends AbstractTest {
 
 		// 1.Home Page > Search
 		searchPage = (SearchPageObject) homePage.openFooterPageByName(driver, "Search");
-		searchPage.sleepInSecond(2);
+		searchPage.sleepInSecond(driver,2);
 
 		// 2. Search > Shipping and Return
 		shippingReturnPage = (ShippingReturnPageObject) searchPage.openFooterPageByName(driver, "Shipping & returns");
-		shippingReturnPage.sleepInSecond(2);
+		shippingReturnPage.sleepInSecond(driver,2);
 
 		// 3. Shipping and Return > Sitemap
 		sitemapPage = (SitemapPageObject) shippingReturnPage.openFooterPageByName(driver, "Sitemap");
-		sitemapPage.sleepInSecond(2);
+		sitemapPage.sleepInSecond(driver,2);
 
 		// 4. Sitemap > Footer My Account
 		footerMyAccountPage = (FooterMyAccountPageObject) sitemapPage.openFooterPageByName(driver, "My account");
-		footerMyAccountPage.sleepInSecond(2);
+		footerMyAccountPage.sleepInSecond(driver,2);
 
 		// 5. Footer My Account > Home page
 		homePage = footerMyAccountPage.openHomePage(driver);
-		homePage.sleepInSecond(2);
+		homePage.sleepInSecond(driver,2);
 
 		// 6. Home Page > Header Wishlist
 		headerWishListPage = homePage.openHeaderWishlistPage(driver);
-		headerWishListPage.sleepInSecond(2);
+		headerWishListPage.sleepInSecond(driver,2);
 	}
 
 	@Test(description = "only use in case more pages")
@@ -89,29 +89,29 @@ public class Login_10_RegisterAndLogin_DynamicLocator extends AbstractTest {
 		// 1.Home Page > Search
 		homePage.openFooterPagesByName(driver, "Search");
 		searchPage = PageGeneratorManager.getSearchPage(driver);
-		searchPage.sleepInSecond(2);
+		searchPage.sleepInSecond(driver,2);
 
 		// 2. Search > Shipping and Return
 		searchPage.openFooterPagesByName(driver, "Shipping & returns");
 		shippingReturnPage = PageGeneratorManager.getShippingPage(driver);
-		shippingReturnPage.sleepInSecond(2);
+		shippingReturnPage.sleepInSecond(driver,2);
 
 		// 3. Shipping and Return > Sitemap
 		shippingReturnPage.openFooterPageByName(driver, "Sitemap");
 		sitemapPage = PageGeneratorManager.getSitemapPage(driver);
-		sitemapPage.sleepInSecond(2);
+		sitemapPage.sleepInSecond(driver,2);
 
 		// 4. Sitemap > Footer My Account
 		sitemapPage.openFooterPagesByName(driver, "My account");
 		footerMyAccountPage = PageGeneratorManager.getFooterMyAccountPage(driver);
-		footerMyAccountPage.sleepInSecond(2);
+		footerMyAccountPage.sleepInSecond(driver,2);
 		// 5. Footer My Account > Home page
 		homePage = footerMyAccountPage.openHomePage(driver);
-		homePage.sleepInSecond(2);
+		homePage.sleepInSecond(driver,2);
 
 		// 6. Home Page > Header Wishlist
 		headerWishListPage = homePage.openHeaderWishlistPage(driver);
-		headerWishListPage.sleepInSecond(2);
+		headerWishListPage.sleepInSecond(driver,2);
 	}
 
 	@Test(description = "only use in case more pages")
@@ -119,31 +119,31 @@ public class Login_10_RegisterAndLogin_DynamicLocator extends AbstractTest {
 		// 1.Home Page > Computers
 		homePage.openHeaderMenuPagesByName(driver, "Computers ");
 		computersPage = PageGeneratorManager.getHeaderComputerPage(driver);
-		computersPage.sleepInSecond(2);
+		computersPage.sleepInSecond(driver,2);
 
 		// 2. Computers > Apparel
 		computersPage.openHeaderMenuPagesByName(driver, "Apparel ");
 		apparelPage = PageGeneratorManager.getHeaderApparelPage(driver);
-		apparelPage.sleepInSecond(2);
+		apparelPage.sleepInSecond(driver,2);
 
 		// 3. Apparel > GiftCards
 		apparelPage.openHeaderMenuPagesByName(driver, "Gift Cards ");
 		giftCardsPage = PageGeneratorManager.getHeaderGiftCardsPage(driver);
-		giftCardsPage.sleepInSecond(2);
+		giftCardsPage.sleepInSecond(driver,2);
 
 		// 4. GiftCards > BooksPage
 		giftCardsPage.openHeaderMenuPagesByName(driver, "Books ");
 		booksPage = PageGeneratorManager.getHeaderBooksPage(driver);
-		booksPage.sleepInSecond(2);
+		booksPage.sleepInSecond(driver,2);
 
 		// 5. BooksPage > Homepage
 		booksPage.openHomePage(driver);
 		homePage = PageGeneratorManager.getHomePage(driver);
-		homePage.sleepInSecond(2);
+		homePage.sleepInSecond(driver,2);
 
 		// 6. Home Page > Header Wishlist
 		headerWishListPage = homePage.openHeaderWishlistPage(driver);
-		headerWishListPage.sleepInSecond(2);
+		headerWishListPage.sleepInSecond(driver,2);
 	}
 	@Test()
 	public void TC_06_Close() {

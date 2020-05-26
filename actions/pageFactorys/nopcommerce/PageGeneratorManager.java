@@ -2,7 +2,7 @@ package pageFactorys.nopcommerce;
 
 import org.openqa.selenium.WebDriver;
 
-import pageObjects.nopcommerce.HeaderSubDeskTopPageObject;
+import pageObjects.nopcommerce.HeaderDeskTopPageObject;
 import pageObjects.nopcommerce.FooterMyAccountPageObject;
 import pageObjects.nopcommerce.HeaderApparelPageObject;
 import pageObjects.nopcommerce.HeaderBooksPageObject;
@@ -59,7 +59,7 @@ public class PageGeneratorManager {
 	public static HeaderGiftCardsPageObject getHeaderGiftCardsPage(WebDriver driver) {
 		return new HeaderGiftCardsPageObject(driver);
 	}
-	public static HeaderSubDeskTopPageObject getHeaderSubDeskTopPage(WebDriver driver) {
-		return new HeaderSubDeskTopPageObject(driver);
+	public static HeaderDeskTopPageObject getHeaderSubDeskTopPage(WebDriver driver) {
+		return new HeaderDeskTopPageObject(driver);
 	}
 }

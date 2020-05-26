@@ -35,4 +35,19 @@ public class AbstractPageNopCommerceUI {
 	
 	// Button
 	public static final String DYNAMIC_BUTTON = "//input[@value = '%s']";
+	
+	//Validation Message
+	public static final String DYNAMIC_VALIDATION_MSG = "//span[text() = '%s']";
+	
+	// Result Message
+	public static final String DYNAMIC_RESULT_ERROR_MSG = "//li[text() = '%s']";
+	
+	// Product Title
+	public static final String PRODUCT_TITLES = "//h2[@class = 'product-title']/a";
+	
+	// Product Price
+	public static final String PRODUCT_PRICES = "//div[@class = 'prices']//span";
+	
+	// Listbox Menu
+	public static final String DYNAMIC_LISTBOX_MENU = "//div[@class = 'listbox']//li[@class = '%s']//a";
 }

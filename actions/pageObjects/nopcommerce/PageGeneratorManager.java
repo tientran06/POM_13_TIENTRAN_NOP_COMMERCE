@@ -44,7 +44,7 @@ public class PageGeneratorManager {
 	public static HeaderGiftCardsPageObject getHeaderGiftCardsPage(WebDriver driver) {
 		return new HeaderGiftCardsPageObject(driver);
 	}
-	public static HeaderSubDeskTopPageObject getHeaderSubDeskTopPage(WebDriver driver) {
-		return new HeaderSubDeskTopPageObject(driver);
+	public static HeaderDeskTopPageObject getHeaderDeskTopPage(WebDriver driver) {
+		return new HeaderDeskTopPageObject(driver);
 	}
 }

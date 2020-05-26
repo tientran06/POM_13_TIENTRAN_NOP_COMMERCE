@@ -59,8 +59,8 @@ public class Login_04_Login_PageObject {
 		loginPage.inputToPasswordTextbox(password);
 		loginPage.clickToLoginButton();
 		Assert.assertTrue(loginPage
-				.isValidationErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
-		Assert.assertTrue(loginPage.isValidationErrorMsgDisplayed("No customer account found"));
+				.isResultErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
+		Assert.assertTrue(loginPage.isResultErrorMsgDisplayed("No customer account found"));
 
 	}
 
@@ -70,8 +70,8 @@ public class Login_04_Login_PageObject {
 		loginPage.inputToPasswordTextbox("");
 		loginPage.clickToLoginButton();
 		Assert.assertTrue(loginPage
-				.isValidationErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
-		Assert.assertTrue(loginPage.isValidationErrorMsgDisplayed("The credentials provided are incorrect"));
+				.isResultErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
+		Assert.assertTrue(loginPage.isResultErrorMsgDisplayed("The credentials provided are incorrect"));
 	}
 
 	@Test
@@ -80,8 +80,8 @@ public class Login_04_Login_PageObject {
 		loginPage.inputToPasswordTextbox("123789@");
 		loginPage.clickToLoginButton();
 		Assert.assertTrue(loginPage
-				.isValidationErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
-		Assert.assertTrue(loginPage.isValidationErrorMsgDisplayed("The credentials provided are incorrect"));
+				.isResultErrorMsgDisplayed("Login was unsuccessful. Please correct the errors and try again."));
+		Assert.assertTrue(loginPage.isResultErrorMsgDisplayed("The credentials provided are incorrect"));
 	}
 
 	@Test

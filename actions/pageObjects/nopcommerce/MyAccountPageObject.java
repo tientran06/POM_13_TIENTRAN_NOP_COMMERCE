@@ -3,8 +3,6 @@ package pageObjects.nopcommerce;
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPages;
-import pageUIs.liveguru.MyAccountPageUI;
-import pageUIs.nopcommerce.HomePageUI;
 import pageUIs.nopcommerce.MyAccountUI;
 
 public class MyAccountPageObject extends AbstractPages{
@@ -81,4 +79,20 @@ public class MyAccountPageObject extends AbstractPages{
 		return getAttributeValue(driver, MyAccountUI.COMPANY_TEXTBOX, "value");
 	}
 
+	public boolean isAddressAccountNameDisplayed(WebDriver driver, String accName) {
+		waitForElementVisible(driver, MyAccountUI.ADDRESS_ACCOUNT_NAME_INFOR, accName);
+		return isElementDisplayed(driver, MyAccountUI.ADDRESS_ACCOUNT_NAME_INFOR, accName);
+	}
+	public String getAddressAccountInforByClass(WebDriver driver, String classValue) {
+		waitForElementVisible(driver, MyAccountUI.DYNAMIC_ADDRESS_TEXT_INFOR, classValue);
+		return getTextElement(driver, MyAccountUI.DYNAMIC_ADDRESS_TEXT_INFOR, classValue);
+	}
+	public boolean isAddressInforDisplayedByClass(WebDriver driver, String classValue, String textinfor) {
+		waitForElementVisible(driver, MyAccountUI.DYNAMIC_ADDRESS_INFOR, classValue, textinfor);
+		return isElementDisplayed(driver, MyAccountUI.DYNAMIC_ADDRESS_INFOR, classValue, textinfor);
+	}
+	public boolean isResultMsgSuccessDisplayed(WebDriver driver, String msgValue) {
+		waitForElementVisible(driver, MyAccountUI.DYNAMIC_RESULT_MSG, msgValue);
+		return isElementDisplayed(driver, MyAccountUI.DYNAMIC_RESULT_MSG, msgValue);
+	}
 }
