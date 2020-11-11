@@ -1,4 +1,4 @@
-package com.nopcommerce;
+package com.nopcommerce.data;
 
 import commons.DataHelperFacker;
 

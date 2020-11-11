@@ -2,7 +2,7 @@ package com.nopcommerce.login;
 
 import org.testng.annotations.Test;
 
-import com.nopcommerce.CustomerData;
+import com.nopcommerce.data.CustomerData;
 
 import commons.AbstractTest;
 import pageObjects.nopcommerce.HomePageObject;
