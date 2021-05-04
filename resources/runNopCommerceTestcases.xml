@@ -11,10 +11,13 @@
 	<parameter name="browser" value="firefox" />
 	<parameter name="url" value="https://demo.nopcommerce.com/" />
 	
-	<test name="Run on EDGE">
-		<parameter name="browser" value="firefox" />
+	<test name="Run on CHROME">
+		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="com.nopcommerce.login.Login_17_RegisterAndLogin_DataJSon" />
+			<class name="com.nopcommerce.common.Common_01_RegisterUser" />
+<!-- 			<class name="com.nopcommerce.frontend.FrontEnd_05_MyAccount" /> -->
+			<class name="com.nopcommerce.login.Login_14_Sort_Asc_Desc" />
+			<class name="com.nopcommerce.login.Login_13_RegisterAndLogin_DynamicElement" />
 		</classes>
 	</test>
 

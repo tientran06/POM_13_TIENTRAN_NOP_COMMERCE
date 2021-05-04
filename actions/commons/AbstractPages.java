@@ -1,13 +1,10 @@
 package commons;
 
-import static org.testng.Assert.assertTrue;
-
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -44,8 +41,8 @@ public class AbstractPages {
 	private By byXpath;
 	private JavascriptExecutor jsExecutor;
 
-	public void openUrl(WebDriver driver, String urlvalue) {
-		driver.get(urlvalue);
+	public void openUrl(WebDriver driver, String urlValue) {
+		driver.get(urlValue);
 		driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
@@ -313,19 +310,19 @@ public class AbstractPages {
 	}
 
 	public void switchToWindowByID(WebDriver driver, String parentID) {
-		Set<String> allWindowns = driver.getWindowHandles();
+		Set<String> allWindows = driver.getWindowHandles();
 
-		for (String termWindown : allWindowns) {
-			if (!termWindown.equals(parentID)) {
-				driver.switchTo().window(termWindown);
+		for (String termWindow : allWindows) {
+			if (!termWindow.equals(parentID)) {
+				driver.switchTo().window(termWindow);
 				break;
 			}
 		}
 	}
 
 	public void switchToWindownByTitle(WebDriver driver, String expectedTitle) {
-		Set<String> allWindowns = driver.getWindowHandles();
-		for (String termWindown : allWindowns) {
+		Set<String> allWindows = driver.getWindowHandles();
+		for (String termWindown : allWindows) {
 			driver.switchTo().window(termWindown);
 			String currentTitle = driver.getTitle();
 			if (currentTitle.equals(expectedTitle)) {
@@ -335,8 +332,8 @@ public class AbstractPages {
 	}
 
 	public void closeAllWindownsWithoutParent(WebDriver driver, String parentID) {
-		Set<String> allWindowns = driver.getWindowHandles();
-		for (String termWindow : allWindowns) {
+		Set<String> allWindows = driver.getWindowHandles();
+		for (String termWindow : allWindows) {
 			driver.switchTo().window(termWindow);
 			if (!termWindow.equals(parentID)) {
 				driver.close();
@@ -403,7 +400,6 @@ public class AbstractPages {
 
 	public void waitForElementVisible(WebDriver driver, String locator) {
 		waitExplicit = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
-		overrideGlobalTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		byXpath = byXpathLocator(locator);
 		try {
 			System.out.println("Start time for wait visible = " + new Date());
@@ -413,7 +409,6 @@ public class AbstractPages {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		overrideGlobalTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 	}
 
 	public void waitForElementVisible(WebDriver driver, String locator, String... values) {

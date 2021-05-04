@@ -49,5 +49,6 @@ public class AbstractPageNopCommerceUI {
 	public static final String PRODUCT_PRICES = "//div[@class = 'prices']//span";
 	
 	// Listbox Menu
+	// Site is changed this xpath is not correct
 	public static final String DYNAMIC_LISTBOX_MENU = "//div[@class = 'listbox']//li[@class = '%s']//a";
 }

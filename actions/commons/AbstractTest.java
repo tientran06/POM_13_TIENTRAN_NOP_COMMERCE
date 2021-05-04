@@ -1,7 +1,6 @@
 package commons;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +47,7 @@ public class AbstractTest {
 		if (browserName.equalsIgnoreCase("chrome")) {
 
 			// System.setProperty("webdriver.chrome.driver", ".\\libraries\\chromedriver.exe");
-			WebDriverManager.chromedriver().version("80.0.3987.16").setup();
+			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		} else if (browserName.equalsIgnoreCase("firefox")) {
 
@@ -160,7 +159,7 @@ public class AbstractTest {
 			//System.setProperty("webdriver.edge.driver", ".\\libraries\\MicrosoftWebDriver.exe");
 			
 			// Edge new version
-			//System.setProperty("webdriver.edge.driver", ".\\libraries\\msedgedriver.exe");
+			System.setProperty("webdriver.edge.driver", ".\\libraries\\msedgedriver.exe");
 			driver = new EdgeDriver();
 		}
 
