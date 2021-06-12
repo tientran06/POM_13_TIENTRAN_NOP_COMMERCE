@@ -1,0 +1,2 @@
+2021-05-15 22:33:10,999 INFO  com.nopcommerce.login.Login_17_RegisterAndLogin_DataJSon - OS name = windows 10
+2021-05-15 22:33:11,001 INFO  com.nopcommerce.login.Login_17_RegisterAndLogin_DataJSon - Cannot invoke "Object.toString()" because "driver" is null

@@ -16,8 +16,8 @@
 		<classes>
 			<class name="com.nopcommerce.common.Common_01_RegisterUser" />
 <!-- 			<class name="com.nopcommerce.frontend.FrontEnd_05_MyAccount" /> -->
-			<class name="com.nopcommerce.login.Login_14_Sort_Asc_Desc" />
-			<class name="com.nopcommerce.login.Login_13_RegisterAndLogin_DynamicElement" />
+<!-- 			<class name="com.nopcommerce.login.Login_14_Sort_Asc_Desc" /> -->
+			<class name="com.nopcommerce.login.Login_17_RegisterAndLogin_DataJSon" />
 		</classes>
 	</test>
 
